@@ -6,11 +6,11 @@ import net.minecraft.client.render.entity.model.VillagerResemblingModel;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.util.Identifier;
 
-public class CubeEntityRenderer extends MobEntityRenderer<WanderingTraderEntity, VillagerResemblingModel<WanderingTraderEntity>> {
-    private static final Identifier TEXTURE = ClownRaid.id("textures/entity/cube.png");
+public class PresenterEntityRenderer extends MobEntityRenderer<WanderingTraderEntity, VillagerResemblingModel<WanderingTraderEntity>> {
+    private static final Identifier TEXTURE = ClownRaid.id("textures/entity/presenter.png");
 
-    public CubeEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new CubeEntityModel(context.getPart(ClownRaidClient.MODEL_CUBE_LAYER)), 0.5f);
+    public PresenterEntityRenderer(EntityRendererFactory.Context context) {
+        super(context, new PresenterEntityModel(context.getPart(ClownRaidClient.MODEL_PRESENTER_LAYER)), 0.5f);
     }
 
     @Override

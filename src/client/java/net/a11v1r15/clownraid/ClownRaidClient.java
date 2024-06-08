@@ -6,11 +6,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 
 public class ClownRaidClient implements ClientModInitializer {
-	public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(ClownRaid.id("cube"), "main");
+	public static final EntityModelLayer MODEL_PRESENTER_LAYER = new EntityModelLayer(ClownRaid.id("presenter"), "main");
 
 	@Override
 	public void onInitializeClient() {
-		EntityRendererRegistry.register(ClownRaid.CUBE, CubeEntityRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(MODEL_CUBE_LAYER, CubeEntityModel::getTexturedModelData);
+		EntityRendererRegistry.register(ClownRaid.PRESENTER, PresenterEntityRenderer::new);
+		EntityModelLayerRegistry.registerModelLayer(MODEL_PRESENTER_LAYER, PresenterEntityModel::getTexturedModelData);
 	}
 }
