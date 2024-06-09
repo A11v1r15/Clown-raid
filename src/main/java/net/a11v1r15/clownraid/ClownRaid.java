@@ -47,7 +47,7 @@ public class ClownRaid implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(MARCHER, MarcherEntity.createMobAttributes());
 		Registry.register(Registries.ITEM, ClownRaid.id("marcher_spawn_egg"), MARCHER_SPAWN_EGG);
 
-		FabricDefaultAttributeRegistry.register(PRESENTER, SellerEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(SELLER, SellerEntity.createMobAttributes());
 		Registry.register(Registries.ITEM, ClownRaid.id("seller_spawn_egg"), SELLER_SPAWN_EGG);
 
 		LOGGER.info("Coming to a village near you!");
