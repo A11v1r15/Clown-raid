@@ -16,8 +16,8 @@ public class PresenterEntityModel<T extends PresenterEntity> extends VillagerRes
         ModelPartData root  = modelData.getRoot();
         ModelPartData head  = root.getChild(EntityModelPartNames.HEAD);
         ModelPartData hat = head.getChild(EntityModelPartNames.HAT);
-        ModelPartData hat_rim = hat.addChild(EntityModelPartNames.HAT_RIM,  ModelPartBuilder.create().uv(44, 53).cuboid(-6.0F, -6.0F, -6.0F, 12.0F, 12.0F, 1.0F, new Dilation(0.1F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -1.5708F, 0.0F, 0.0F));
-    
+        ModelPartData hat_rim = hat.addChild(EntityModelPartNames.HAT_RIM, ModelPartBuilder.create().uv(38, 51).cuboid(-6.0F, -6.0F, -6.0F, 12.0F, 12.0F, 1.0F, new Dilation(0.1F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -1.5708F, 0.0F, 0.0F));
+
         return TexturedModelData.of(modelData, 64, 64);
     }
 }
