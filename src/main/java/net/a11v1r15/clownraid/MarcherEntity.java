@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
