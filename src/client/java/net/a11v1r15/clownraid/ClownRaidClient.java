@@ -18,7 +18,7 @@ public class ClownRaidClient implements ClientModInitializer {
 		EntityRendererRegistry.register(ClownRaid.MARCHER, MarcherEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_MARCHER_LAYER, MarcherEntityModel::getTexturedModelData);
 		
-		EntityRendererRegistry.register(ClownRaid.SELLER, SellerrEntityRenderer::new);
+		EntityRendererRegistry.register(ClownRaid.SELLER, SellerEntityRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(MODEL_SELLER_LAYER, SellerEntityModel::getTexturedModelData);
 	}
 }
