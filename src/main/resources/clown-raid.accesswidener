@@ -1,2 +1,2 @@
 accessWidener v2 named
-accessible  class   net/minecraft/entity/passive/WanderingTraderEntity$WanderToTargetGoal
+accessible method net/minecraft/entity/passive/WanderingTraderEntity$WanderToTargetGoal <init> (Lnet/minecraft/entity/passive/WanderingTraderEntity;Lnet/minecraft/entity/passive/WanderingTraderEntity;DD)V
