@@ -26,15 +26,22 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipC
     }
 
     protected void initGoals() {
-        super.initGoals();
-        Set<PrioritizedGoal> goalsToDelete = new ObjectLinkedOpenHashSet();
-        Set<PrioritizedGoal> goalSet = this.goalSelector.getGoals();
-        for (PrioritizedGoal goal : goalSet) {
-            if(goal.getGoal() instanceof HoldInHandsGoal) goalsToDelete.add(goal);
-        }
-        for (PrioritizedGoal goal : goalsToDelete) {
-            this.goalSelector.remove(goal);
-        }
+        this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new StopFollowingCustomerGoal(this));
+        this.goalSelector.add(1, new FleeEntityGoal(this, ZombieEntity.class, 8.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new FleeEntityGoal(this, EvokerEntity.class, 12.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new FleeEntityGoal(this, VindicatorEntity.class, 8.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new FleeEntityGoal(this, VexEntity.class, 8.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new FleeEntityGoal(this, PillagerEntity.class, 15.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new FleeEntityGoal(this, IllusionerEntity.class, 12.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new FleeEntityGoal(this, ZoglinEntity.class, 10.0F, 0.5, 0.5));
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 0.5));
+        this.goalSelector.add(1, new LookAtCustomerGoal(this));
+        this.goalSelector.add(2, new WanderToTargetGoal(this, 2.0, 0.35));
+        this.goalSelector.add(4, new GoToWalkTargetGoal(this, 0.35));
+        this.goalSelector.add(8, new WanderAroundFarGoal(this, 0.35));
+        this.goalSelector.add(9, new StopAndLookAtEntityGoal(this, PlayerEntity.class, 3.0F, 1.0F));
+        this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
     }
 
     public ActionResult NightSkipped() {
