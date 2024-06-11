@@ -1,5 +1,9 @@
 package net.a11v1r15.clownraid;
 
+import net.a11v1r15.clownraid.entity.ClownEntity;
+import net.a11v1r15.clownraid.entity.MarcherEntity;
+import net.a11v1r15.clownraid.entity.PresenterEntity;
+import net.a11v1r15.clownraid.entity.SellerEntity;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -21,34 +25,36 @@ public class ClownRaid implements ModInitializer {
 			ClownRaid.id("presenter"),
 			EntityType.Builder.create(PresenterEntity::new, SpawnGroup.CREATURE).dimensions(0.6F, 1.95F).eyeHeight(1.62F).maxTrackingRange(10).build()
 	);
-	public static final Item PRESENTER_SPAWN_EGG = new SpawnEggItem(PRESENTER, 13112340, 0, new Item.Settings());
-	
-	
 	public static final EntityType<MarcherEntity> MARCHER = Registry.register(
 			Registries.ENTITY_TYPE,
 			ClownRaid.id("marcher"),
 			EntityType.Builder.create(MarcherEntity::new, SpawnGroup.CREATURE).dimensions(0.6F, 1.95F).eyeHeight(1.62F).maxTrackingRange(10).build()
 	);
-	public static final Item MARCHER_SPAWN_EGG = new SpawnEggItem(MARCHER, 13112340, 15908921, new Item.Settings());
-	
-	
 	public static final EntityType<SellerEntity> SELLER = Registry.register(
 			Registries.ENTITY_TYPE,
 			ClownRaid.id("seller"),
 			EntityType.Builder.create(SellerEntity::new, SpawnGroup.CREATURE).dimensions(0.6F, 1.95F).eyeHeight(1.62F).maxTrackingRange(10).build()
 	);
-	public static final Item SELLER_SPAWN_EGG = new SpawnEggItem(SELLER, 13112340, 16777215, new Item.Settings());
+	public static final EntityType<ClownEntity> CLOWN = Registry.register(
+			Registries.ENTITY_TYPE,
+			ClownRaid.id("clown"),
+			EntityType.Builder.create(ClownEntity::new, SpawnGroup.CREATURE).dimensions(0.6F, 1.95F).eyeHeight(1.62F).maxTrackingRange(10).build()
+	);
+	public static final Item PRESENTER_SPAWN_EGG = new SpawnEggItem(PRESENTER, 14765359, 0, new Item.Settings());
+	public static final Item MARCHER_SPAWN_EGG = new SpawnEggItem(MARCHER, 14765359, 15449395, new Item.Settings());
+	public static final Item SELLER_SPAWN_EGG = new SpawnEggItem(SELLER, 14765359, 16777215, new Item.Settings());
+	public static final Item CLOWN_SPAWN_EGG = new SpawnEggItem(CLOWN, 14765359, 15741337, new Item.Settings());
 
 	@Override
 	public void onInitialize() {
 		FabricDefaultAttributeRegistry.register(PRESENTER, PresenterEntity.createMobAttributes());
-		Registry.register(Registries.ITEM, ClownRaid.id("presenter_spawn_egg"), PRESENTER_SPAWN_EGG);
-
 		FabricDefaultAttributeRegistry.register(MARCHER, MarcherEntity.createMobAttributes());
-		Registry.register(Registries.ITEM, ClownRaid.id("marcher_spawn_egg"), MARCHER_SPAWN_EGG);
-
 		FabricDefaultAttributeRegistry.register(SELLER, SellerEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(CLOWN, ClownEntity.createMobAttributes());
+		Registry.register(Registries.ITEM, ClownRaid.id("presenter_spawn_egg"), PRESENTER_SPAWN_EGG);
+		Registry.register(Registries.ITEM, ClownRaid.id("marcher_spawn_egg"), MARCHER_SPAWN_EGG);
 		Registry.register(Registries.ITEM, ClownRaid.id("seller_spawn_egg"), SELLER_SPAWN_EGG);
+		Registry.register(Registries.ITEM, ClownRaid.id("clown_spawn_egg"), CLOWN_SPAWN_EGG);
 
 		LOGGER.info("Coming to a village near you!");
 	}
