@@ -6,10 +6,12 @@ import net.a11v1r15.clownraid.entity.PresenterEntity;
 import net.a11v1r15.clownraid.entity.SellerEntity;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -55,6 +57,10 @@ public class ClownRaid implements ModInitializer {
 		Registry.register(Registries.ITEM, ClownRaid.id("marcher_spawn_egg"), MARCHER_SPAWN_EGG);
 		Registry.register(Registries.ITEM, ClownRaid.id("seller_spawn_egg"), SELLER_SPAWN_EGG);
 		Registry.register(Registries.ITEM, ClownRaid.id("clown_spawn_egg"), CLOWN_SPAWN_EGG);
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(c -> c.add(PRESENTER_SPAWN_EGG));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(c -> c.add(MARCHER_SPAWN_EGG));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(c -> c.add(SELLER_SPAWN_EGG));
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(c -> c.add(CLOWN_SPAWN_EGG));
 
 		LOGGER.info("Coming to a village near you!");
 	}

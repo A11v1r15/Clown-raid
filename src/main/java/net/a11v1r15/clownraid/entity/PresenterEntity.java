@@ -1,18 +1,17 @@
 package net.a11v1r15.clownraid.entity;
 
 import net.a11v1r15.clownraid.ClownRaid;
-import net.a11v1r15.clownraid.NightSkipCallback;
+import net.a11v1r15.clownraid.NightSkipListenner;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 
 import java.util.Objects;
 
-public class PresenterEntity extends WanderingTraderEntity implements NightSkipCallback {
+public class PresenterEntity extends WanderingTraderEntity implements NightSkipListenner {
     public PresenterEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -36,11 +35,10 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipC
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
     }
 
-    public ActionResult NightSkipped() {
+    public void nightSkipped() {
         if (!this.getWorld().isClient) {
-            Objects.requireNonNull(this.getServer()).getCommandManager().executeWithPrefix(this.getCommandSource(), "place structure minecraft:village_plains");
+            this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource(), "/place structure minecraft:village_plains");
             ClownRaid.LOGGER.info("I tried to spawn a Plains village!");
         }
-        return ActionResult.SUCCESS;
     }
 }
