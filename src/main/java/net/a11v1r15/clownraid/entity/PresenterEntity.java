@@ -66,17 +66,23 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipL
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories = (TradeOffers.Factory[]) ClownRaidTrades.PRESENTER_TRADES.get(1);
+        TradeOffers.Factory[] factories1 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(1);
         TradeOffers.Factory[] factories2 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(2);
-        if (factories != null && factories2 != null) {
+        TradeOffers.Factory[] factories3 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(3);
+        if (factories1 != null && factories2 != null && factories3 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 5);
-            int i = this.random.nextInt(factories2.length);
-            TradeOffers.Factory factory = factories2[i];
-            TradeOffer tradeOffer = factory.create(this, this.random);
-            if (tradeOffer != null) {
-                tradeOfferList.add(tradeOffer);
-            }
+            int i = this.random.nextInt(factories1.length);
+            int j = this.random.nextInt(factories2.length);
+            int k = this.random.nextInt(factories3.length);
+            TradeOffers.Factory factory1 = factories1[i];
+            TradeOffers.Factory factory2 = factories2[j];
+            TradeOffers.Factory factory3 = factories3[k];
+            TradeOffer tradeOffer1 = factory1.create(this, this.random);
+            TradeOffer tradeOffer2 = factory2.create(this, this.random);
+            TradeOffer tradeOffer3 = factory3.create(this, this.random);
+            if (tradeOffer1 != null) tradeOfferList.add(tradeOffer1);
+            if (tradeOffer2 != null) tradeOfferList.add(tradeOffer2);
+            if (tradeOffer3 != null) tradeOfferList.add(tradeOffer3);
         }
     }
 
