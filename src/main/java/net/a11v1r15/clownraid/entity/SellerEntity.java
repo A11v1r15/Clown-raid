@@ -63,8 +63,8 @@ public class SellerEntity extends WanderingTraderEntity {
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories = (TradeOffers.Factory[]) ClownRaidTrades.PRESENTER_TRADES.get(1);
-        TradeOffers.Factory[] factories2 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(2);
+        TradeOffers.Factory[] factories =  ClownRaidTrades.PRESENTER_TRADES.get(1);
+        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get(2);
         if (factories != null && factories2 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
             this.fillRecipesFromPool(tradeOfferList, factories, 5);

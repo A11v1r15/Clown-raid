@@ -66,9 +66,9 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipL
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories1 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(1);
-        TradeOffers.Factory[] factories2 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(2);
-        TradeOffers.Factory[] factories3 = (TradeOffers.Factory[])ClownRaidTrades.PRESENTER_TRADES.get(3);
+        TradeOffers.Factory[] factories1 = ClownRaidTrades.PRESENTER_TRADES.get(1);
+        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get(2);
+        TradeOffers.Factory[] factories3 = ClownRaidTrades.PRESENTER_TRADES.get(3);
         if (factories1 != null && factories2 != null && factories3 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
             int i = this.random.nextInt(factories1.length);
