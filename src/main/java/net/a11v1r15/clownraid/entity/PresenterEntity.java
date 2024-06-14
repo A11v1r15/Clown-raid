@@ -3,6 +3,7 @@ package net.a11v1r15.clownraid.entity;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.NightSkipListenner;
+import net.a11v1r15.clownraid.Parader;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.*;
@@ -16,14 +17,16 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class PresenterEntity extends WanderingTraderEntity implements NightSkipListenner {
+public class PresenterEntity extends WanderingTraderEntity implements NightSkipListenner, Parader {
+    private @Nullable Parader follower = null;
+    protected boolean isOwner = false;
+    protected boolean hasTraded = false;
+
     public PresenterEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
     }
-
-    protected boolean isOwner = false;
-    protected boolean hasTraded = false;
 
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
@@ -96,5 +99,38 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipL
             this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource(), "/place structure minecraft:village_plains");
             ClownRaid.LOGGER.info("I tried to spawn a Plains village!");
         }
+    }
+
+    @Override
+    public boolean isLeader() {
+        return true;
+    }
+
+    @Override
+    public Parader getFollowing() {
+        return null;
+    }
+
+    @Override
+    public boolean isFollowing() {
+        return false;
+    }
+
+    @Override
+    public boolean hasFollower() {
+        return this.follower != null;
+    }
+
+    @Override
+    public void setFollower(@Nullable Parader parader) {
+        this.follower = parader;
+    }
+
+    @Override
+    public void follow(Parader parader) {
+    }
+
+    @Override
+    public void stopFollowing() {
     }
 }
