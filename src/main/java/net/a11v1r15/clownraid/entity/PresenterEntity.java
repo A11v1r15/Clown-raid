@@ -3,7 +3,7 @@ package net.a11v1r15.clownraid.entity;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.NightSkipListenner;
-import net.a11v1r15.clownraid.Parader;
+import net.a11v1r15.clownraid.ParaderEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.*;
@@ -17,10 +17,8 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-public class PresenterEntity extends WanderingTraderEntity implements NightSkipListenner, Parader {
-    private @Nullable Parader follower = null;
+public class PresenterEntity extends ParaderEntity implements NightSkipListenner {
     protected boolean isOwner = false;
     protected boolean hasTraded = false;
 
@@ -107,7 +105,7 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipL
     }
 
     @Override
-    public Parader getFollowing() {
+    public ParaderEntity getFollowing() {
         return null;
     }
 
@@ -122,12 +120,7 @@ public class PresenterEntity extends WanderingTraderEntity implements NightSkipL
     }
 
     @Override
-    public void setFollower(@Nullable Parader parader) {
-        this.follower = parader;
-    }
-
-    @Override
-    public void follow(Parader parader) {
+    public void follow(ParaderEntity parader) {
     }
 
     @Override

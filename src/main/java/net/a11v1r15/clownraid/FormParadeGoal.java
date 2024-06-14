@@ -4,71 +4,68 @@ import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.decoration.LeashKnotEntity;
 import net.minecraft.util.math.Vec3d;
 
 public class FormParadeGoal extends Goal {
-    public final Parader parader;
+    public final ParaderEntity parader;
     private double speed;
     private static final int MAX_PARADE_LENGTH = 8;
     private int counter;
 
-    public FormParadeGoal(Parader parader, double speed) {
+    public FormParadeGoal(ParaderEntity parader, double speed) {
         this.parader = parader;
         this.speed = speed;
         this.setControls(EnumSet.of(Control.MOVE));
     }
 
     public boolean canStart() {
-        if (!this.parader.isFollowing()) {
-            List<Entity> list = this.parader.getEntity().getWorld().getOtherEntities(this.parader.getEntity(), this.parader.getEntity().getBoundingBox().expand(9.0, 4.0, 9.0), (entityx) -> {
-                EntityType<?> entityType = entityx.getType();
-                return entityType instanceof Parader;
-            });
-            Parader parader = null;
+        if (!this.parader.isLeader() && !this.parader.isFollowing()) {
+            List<Entity> list = this.parader.getWorld().getOtherEntities(this.parader, this.parader.getBoundingBox().expand(9.0, 4.0, 9.0), (entityx) -> entityx instanceof ParaderEntity);
+            ParaderEntity paraderEntity = null;
             double d = Double.MAX_VALUE;
             Iterator var5 = list.iterator();
 
             Entity entity;
-            Parader parader2;
+            ParaderEntity paraderEntity2;
             double e;
             while(var5.hasNext()) {
                 entity = (Entity)var5.next();
-                parader2 = (Parader) entity;
-                if (parader2.isFollowing() && !parader2.hasFollower()) {
-                    e = this.parader.getEntity().squaredDistanceTo(parader2.getEntity());
+                paraderEntity2 = (ParaderEntity)entity;
+                if (paraderEntity2.isFollowing() && !paraderEntity2.hasFollower()) {
+                    e = this.parader.squaredDistanceTo(paraderEntity2);
                     if (!(e > d)) {
                         d = e;
-                        parader = parader2;
+                        paraderEntity = paraderEntity2;
                     }
                 }
             }
 
-            if (parader == null) {
+            if (paraderEntity == null) {
                 var5 = list.iterator();
 
                 while(var5.hasNext()) {
                     entity = (Entity)var5.next();
-                    parader2 = (Parader)entity;
-                    if (parader2.isLeader() && !parader2.hasFollower()) {
-                        e = this.parader.getEntity().squaredDistanceTo(parader2.getEntity());
+                    paraderEntity2 = (ParaderEntity)entity;
+                    if (paraderEntity2.isLeader() && !paraderEntity2.hasFollower()) {
+                        e = this.parader.squaredDistanceTo(paraderEntity2);
                         if (!(e > d)) {
                             d = e;
-                            parader = parader2;
+                            paraderEntity = paraderEntity2;
                         }
                     }
                 }
             }
 
-            if (parader == null) {
+            if (paraderEntity == null) {
                 return false;
             } else if (d < 4.0) {
                 return false;
-            } else if (!parader.isLeader() && !this.canFollow(parader, 1)) {
+            } else if (!paraderEntity.isLeader() && !this.canFollow(paraderEntity, 1)) {
                 return false;
             } else {
-                this.parader.follow(parader);
+                this.parader.follow(paraderEntity);
                 return true;
             }
         } else {
@@ -77,8 +74,8 @@ public class FormParadeGoal extends Goal {
     }
 
     public boolean shouldContinue() {
-        if (this.parader.isFollowing() && this.parader.getFollowing().getEntity().isAlive() && this.canFollow(this.parader, 0)) {
-            double d = this.parader.getEntity().squaredDistanceTo(this.parader.getFollowing().getEntity());
+        if (this.parader.isFollowing() && this.parader.getFollowing().isAlive() && this.canFollow(this.parader, 0)) {
+            double d = this.parader.squaredDistanceTo(this.parader.getFollowing());
             if (d > 676.0) {
                 if (this.speed <= 3.0) {
                     this.speed *= 1.2;
@@ -108,24 +105,26 @@ public class FormParadeGoal extends Goal {
 
     public void tick() {
         if (this.parader.isFollowing()) {
-            Parader parader = this.parader.getFollowing();
-            double d = (double)this.parader.getEntity().distanceTo(parader.getEntity());
-            float f = 2.0F;
-            Vec3d vec3d = (new Vec3d(parader.getEntity().getX() - this.parader.getEntity().getX(), parader.getEntity().getY() - this.parader.getEntity().getY(), parader.getEntity().getZ() - this.parader.getEntity().getZ())).normalize().multiply(Math.max(d - 2.0, 0.0));
-            this.parader.getEntity().getNavigation().startMovingTo(this.parader.getEntity().getX() + vec3d.x, this.parader.getEntity().getY() + vec3d.y, this.parader.getEntity().getZ() + vec3d.z, this.speed);
+            if (!(this.parader.getLeashHolder() instanceof LeashKnotEntity)) {
+                ParaderEntity paraderEntity = this.parader.getFollowing();
+                double d = (double)this.parader.distanceTo(paraderEntity);
+                float f = 2.0F;
+                Vec3d vec3d = (new Vec3d(paraderEntity.getX() - this.parader.getX(), paraderEntity.getY() - this.parader.getY(), paraderEntity.getZ() - this.parader.getZ())).normalize().multiply(Math.max(d - 2.0, 0.0));
+                this.parader.getNavigation().startMovingTo(this.parader.getX() + vec3d.x, this.parader.getY() + vec3d.y, this.parader.getZ() + vec3d.z, this.speed);
+            }
         }
     }
 
-    private boolean canFollow(Parader parader, int length) {
-        if (length > 8) {
+    private boolean canFollow(ParaderEntity parader, int length) {
+        if (length > MAX_PARADE_LENGTH) {
             return false;
         } else if (parader.isFollowing()) {
             if (parader.getFollowing().isLeader()) {
                 return true;
             } else {
-                Parader var10001 = parader.getFollowing();
+                ParaderEntity following = parader.getFollowing();
                 ++length;
-                return this.canFollow(var10001, length);
+                return this.canFollow(following, length);
             }
         } else {
             return false;

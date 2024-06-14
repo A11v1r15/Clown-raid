@@ -2,7 +2,7 @@ package net.a11v1r15.clownraid.entity;
 
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.FormParadeGoal;
-import net.a11v1r15.clownraid.Parader;
+import net.a11v1r15.clownraid.ParaderEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -14,12 +14,8 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-public class MarcherEntity extends WanderingTraderEntity implements Parader {
-    private @Nullable Parader follower = null;
-    private @Nullable Parader followee = null;
-
+public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.GOAT_HORN));
@@ -38,7 +34,7 @@ public class MarcherEntity extends WanderingTraderEntity implements Parader {
         this.goalSelector.add(1, new FleeEntityGoal(this, ZoglinEntity.class, 10.0F, 0.5, 0.5));
         this.goalSelector.add(1, new EscapeDangerGoal(this, 0.5));
         this.goalSelector.add(1, new LookAtCustomerGoal(this));
-        this.goalSelector.add(2, new FormParadeGoal(this, 2.0999999046325684));
+        this.goalSelector.add(2, new FormParadeGoal(this, 1.25));
         this.goalSelector.add(3, new WanderToTargetGoal(this, 2.0, 0.35));
         this.goalSelector.add(4, new GoToWalkTargetGoal(this, 0.35));
         this.goalSelector.add(8, new WanderAroundFarGoal(this, 0.35));
@@ -59,40 +55,5 @@ public class MarcherEntity extends WanderingTraderEntity implements Parader {
         } else {
             return super.interactMob(player, hand);
         }
-    }
-
-    @Override
-    public Parader getFollowing() {
-        return this.followee;
-    }
-
-    @Override
-    public boolean isFollowing() {
-        return this.followee != null;
-    }
-
-    @Override
-    public boolean hasFollower() {
-        return this.follower != null;
-    }
-
-    @Override
-    public void setFollower(@Nullable Parader parader) {
-        this.follower = parader;
-    }
-
-    @Override
-    public void follow(Parader parader) {
-        this.followee = parader;
-        this.followee.setFollower(this);
-    }
-
-    @Override
-    public void stopFollowing() {
-        if (this.followee != null) {
-            this.followee.setFollower(this);
-        }
-
-        this.followee = null;
     }
 }
