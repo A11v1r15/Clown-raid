@@ -42,10 +42,10 @@ public class ClownRaid implements ModInitializer {
 			ClownRaid.id("clown"),
 			EntityType.Builder.create(ClownEntity::new, SpawnGroup.CREATURE).dimensions(0.6F, 1.95F).eyeHeight(1.62F).maxTrackingRange(10).build()
 	);
-	public static final Item PRESENTER_SPAWN_EGG = new SpawnEggItem(PRESENTER, 14765359, 0, new Item.Settings());
-	public static final Item MARCHER_SPAWN_EGG = new SpawnEggItem(MARCHER, 14765359, 15449395, new Item.Settings());
-	public static final Item SELLER_SPAWN_EGG = new SpawnEggItem(SELLER, 14765359, 16777215, new Item.Settings());
-	public static final Item CLOWN_SPAWN_EGG = new SpawnEggItem(CLOWN, 14765359, 15741337, new Item.Settings());
+	public static final Item PRESENTER_SPAWN_EGG = new SpawnEggItem(PRESENTER, 0xE14D2F, 0x000000, new Item.Settings());
+	public static final Item MARCHER_SPAWN_EGG = new SpawnEggItem(MARCHER, 0xE14D2F, 0xEBBD33, new Item.Settings());
+	public static final Item SELLER_SPAWN_EGG = new SpawnEggItem(SELLER, 0xE14D2F, 0xE2E1DC, new Item.Settings());
+	public static final Item CLOWN_SPAWN_EGG = new SpawnEggItem(CLOWN, 0xE14D2F, 0xF03199, new Item.Settings());
 
 	@Override
 	public void onInitialize() {
