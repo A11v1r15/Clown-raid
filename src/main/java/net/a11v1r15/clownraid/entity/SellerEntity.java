@@ -64,11 +64,11 @@ public class SellerEntity extends ParaderEntity {
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories =  ClownRaidTrades.PRESENTER_TRADES.get(1);
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get(2);
+        TradeOffers.Factory[] factories =  ClownRaidTrades.SELLER_TRADES.get(1);
+        TradeOffers.Factory[] factories2 = ClownRaidTrades.SELLER_TRADES.get(2);
         if (factories != null && factories2 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 5);
+            this.fillRecipesFromPool(tradeOfferList, factories, 2);
             int i = this.random.nextInt(factories2.length);
             TradeOffers.Factory factory = factories2[i];
             TradeOffer tradeOffer = factory.create(this, this.random);

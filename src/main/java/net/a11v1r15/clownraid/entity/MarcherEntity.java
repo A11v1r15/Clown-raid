@@ -6,11 +6,14 @@ import net.a11v1r15.clownraid.ParaderEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.GoatHornItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.InstrumentTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -18,7 +21,9 @@ import net.minecraft.world.World;
 public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.GOAT_HORN));
+        ItemStack goatHorn = new ItemStack(Items.GOAT_HORN);
+        GoatHornItem.setRandomInstrumentFromTag(goatHorn, InstrumentTags.GOAT_HORNS, this.getWorld().getRandom());
+        this.equipStack(EquipmentSlot.MAINHAND, goatHorn);
         this.setCurrentHand(Hand.MAIN_HAND);
     }
 
@@ -42,6 +47,17 @@ public class MarcherEntity extends ParaderEntity {
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
     }
 
+    @Override
+    public boolean shouldDropLoot(){
+        return false;
+    }
+
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        super.onDeath(damageSource);
+        this.dropStack(this.getEquippedStack(EquipmentSlot.MAINHAND));
+    }
+
     protected void fillRecipes() {}
 
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -49,7 +65,7 @@ public class MarcherEntity extends ParaderEntity {
         if (!itemStack.isOf(ClownRaid.MARCHER_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (!this.getWorld().isClient) {
                 this.getEquippedStack(EquipmentSlot.MAINHAND).use(this.getWorld(), player, Hand.MAIN_HAND);
-                return ActionResult.CONSUME;
+                return ActionResult.SUCCESS;
             }
             return ActionResult.success(this.getWorld().isClient);
         } else {

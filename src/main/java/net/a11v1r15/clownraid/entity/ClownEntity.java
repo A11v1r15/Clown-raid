@@ -10,6 +10,9 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -66,17 +69,25 @@ public class ClownEntity extends ParaderEntity {
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories =  ClownRaidTrades.PRESENTER_TRADES.get(1);
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get(2);
+        TradeOffers.Factory[] factories =  ClownRaidTrades.CLOWN_TRADES.get(1);
+        TradeOffers.Factory[] factories2 = ClownRaidTrades.CLOWN_TRADES.get(2);
         if (factories != null && factories2 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 5);
+            this.fillRecipesFromPool(tradeOfferList, factories, 2);
             int i = this.random.nextInt(factories2.length);
             TradeOffers.Factory factory = factories2[i];
             TradeOffer tradeOffer = factory.create(this, this.random);
             if (tradeOffer != null) {
                 tradeOfferList.add(tradeOffer);
             }
+        }
+    }
+
+    protected void afterUsing(TradeOffer offer) {
+        super.afterUsing(offer);
+        if (offer.shouldRewardPlayerExperience()) {
+            ParticleEffect confetti = null;
+            this.getWorld().addParticle(confetti, this.getX(), this.getY(), this.getZ(), 0, 3, 0);
         }
     }
 }
