@@ -3,6 +3,8 @@ package net.a11v1r15.clownraid;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
+
+import net.a11v1r15.clownraid.entity.ParaderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.decoration.LeashKnotEntity;

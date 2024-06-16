@@ -52,7 +52,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation include("gay.lemmaeof:terrifictickets:0.1.2+1.21-pre3")
-	modImplementation include("maven.modrinth:confetti-lib:1.0.0+1.21")
+	modImplementation include("maven.modrinth:confetti-lib:1.1.0+1.21")
 }
 
 processResources {

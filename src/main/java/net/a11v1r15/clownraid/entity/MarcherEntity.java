@@ -2,7 +2,6 @@ package net.a11v1r15.clownraid.entity;
 
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.FormParadeGoal;
-import net.a11v1r15.clownraid.ParaderEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
