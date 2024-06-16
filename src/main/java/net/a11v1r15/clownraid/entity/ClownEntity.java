@@ -1,5 +1,6 @@
 package net.a11v1r15.clownraid.entity;
 
+import dev.doublekekse.confetti.Confetti;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
@@ -86,8 +87,8 @@ public class ClownEntity extends ParaderEntity {
     protected void afterUsing(TradeOffer offer) {
         super.afterUsing(offer);
         if (offer.shouldRewardPlayerExperience()) {
-            ParticleEffect confetti = null;
-            this.getWorld().addParticle(confetti, this.getX(), this.getY(), this.getZ(), 0, 3, 0);
+            this.getWorld().addParticle(Confetti.CONFETTI, this.getX(), this.getY(), this.getZ(), 0f, 3f, 0f);
         }
+        ClownRaid.LOGGER.info("Confetti?");
     }
 }
