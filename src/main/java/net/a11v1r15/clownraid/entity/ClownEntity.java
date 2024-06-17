@@ -4,16 +4,13 @@ import dev.doublekekse.confetti.Confetti;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
-import net.a11v1r15.clownraid.ParaderEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -21,10 +18,13 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
+import symbolics.division.honque.Honque;
 
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
+        ItemStack theFunny = new ItemStack(Honque.THE_FUNNY);
+        this.equipStack(EquipmentSlot.HEAD, theFunny);
     }
 
     protected void initGoals() {
@@ -87,8 +87,7 @@ public class ClownEntity extends ParaderEntity {
     protected void afterUsing(TradeOffer offer) {
         super.afterUsing(offer);
         if (offer.shouldRewardPlayerExperience()) {
-            this.getWorld().addParticle(Confetti.CONFETTI, this.getX(), this.getY(), this.getZ(), 0f, 3f, 0f);
+            this.getWorld().addImportantParticle(Confetti.CONFETTI, this.getX(), this.getY(), this.getZ(), 0.0, 2.0, 0.0);
         }
-        ClownRaid.LOGGER.info("Confetti?");
     }
 }
