@@ -6,6 +6,7 @@ import net.a11v1r15.clownraid.entity.PresenterEntity;
 import net.a11v1r15.clownraid.entity.SellerEntity;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityType;
@@ -62,6 +63,10 @@ public class ClownRaid implements ModInitializer {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(c -> c.add(SELLER_SPAWN_EGG));
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(c -> c.add(CLOWN_SPAWN_EGG));
 
+		ServerWorldEvents.LOAD.register(((server, world) -> {
+			if (world.isClient()) return;
+			ServerWorldSpawnersUtil.register(world, new ParadeSpawner());
+		}));
 		LOGGER.info("Coming to a village near you!");
 	}
 
