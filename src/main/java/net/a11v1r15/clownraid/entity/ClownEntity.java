@@ -1,9 +1,12 @@
 package net.a11v1r15.clownraid.entity;
 
 import dev.doublekekse.confetti.Confetti;
+import dev.doublekekse.confetti.math.Vec3Dist;
+import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -11,9 +14,11 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
@@ -85,9 +90,11 @@ public class ClownEntity extends ParaderEntity {
     }
 
     protected void afterUsing(TradeOffer offer) {
-        super.afterUsing(offer);
-        if (offer.shouldRewardPlayerExperience()) {
-            this.getWorld().addImportantParticle(Confetti.CONFETTI, this.getX(), this.getY(), this.getZ(), 0.0, 2.0, 0.0);
+        if (offer.shouldRewardPlayerExperience() && this.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3Dist posDist = new Vec3Dist(this.getPos(), 1.0);
+            Vec3Dist velDist = new Vec3Dist(new Vec3d(0.0, 1.0, 0.0), 0.2);
+            serverWorld.getPlayers().forEach((player) -> ServerPlayNetworking.send(player, new ExtendedParticlePacket(posDist, velDist, offer.getMerchantExperience() * 100, true, Confetti.CONFETTI)));
         }
+        super.afterUsing(offer);
     }
 }
