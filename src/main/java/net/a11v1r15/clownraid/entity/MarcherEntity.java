@@ -2,6 +2,7 @@ package net.a11v1r15.clownraid.entity;
 
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.FormParadeGoal;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -9,13 +10,16 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.GoatHornItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.registry.tag.InstrumentTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+
+import java.awt.*;
 
 public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
@@ -61,10 +65,18 @@ public class MarcherEntity extends ParaderEntity {
 
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
+        ItemStack myItemStack = this.getEquippedStack(EquipmentSlot.MAINHAND);
         if (!itemStack.isOf(ClownRaid.MARCHER_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (!this.getWorld().isClient) {
-                this.getEquippedStack(EquipmentSlot.MAINHAND).use(this.getWorld(), player, Hand.MAIN_HAND);
-                return ActionResult.SUCCESS;
+                if (myItemStack.contains(DataComponentTypes.INSTRUMENT)){
+                    Instrument instrument = myItemStack.getComponents().get(DataComponentTypes.INSTRUMENT).value();
+                    ClownRaid.LOGGER.info(myItemStack.getComponents().get(DataComponentTypes.INSTRUMENT).toString());
+                    SoundEvent soundEvent = instrument.soundEvent().value();
+                    float f = instrument.range();
+                    this.getWorld().playSoundFromEntity(this, soundEvent, SoundCategory.RECORDS, f, 1.0F);
+                    this.getWorld().emitGameEvent(GameEvent.INSTRUMENT_PLAY, this.getPos(), GameEvent.Emitter.of(this));
+                    return ActionResult.SUCCESS;
+                }
             }
             return ActionResult.success(this.getWorld().isClient);
         } else {

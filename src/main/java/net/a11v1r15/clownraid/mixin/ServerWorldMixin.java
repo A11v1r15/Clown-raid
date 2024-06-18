@@ -16,7 +16,6 @@ public class ServerWorldMixin {
 	EntityList entityList;
 	@Inject(method = "tick(Ljava/util/function/BooleanSupplier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;wakeSleepingPlayers()V"))
 	private void clownRaid$addNightSkipEvent(CallbackInfo ci) {
-		ClownRaid.LOGGER.info("Night Skipped!");
 		entityList.forEach(entity -> {
 			if (entity instanceof NightSkipListenner listener) {
 				listener.nightSkipped();

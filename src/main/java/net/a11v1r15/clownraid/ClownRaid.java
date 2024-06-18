@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ClownRaid implements ModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger("clown-raid");
+    public static final Logger LOGGER = LoggerFactory.getLogger("Clown Raid");
 
 	public static final EntityType<PresenterEntity> PRESENTER = Registry.register(
 			Registries.ENTITY_TYPE,

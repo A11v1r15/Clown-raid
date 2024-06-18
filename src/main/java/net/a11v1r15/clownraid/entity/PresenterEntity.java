@@ -93,8 +93,7 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
 
     public void nightSkipped() {
         if (!this.getWorld().isClient && !this.isOwner && this.hasTraded) {
-            this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource(), "/place structure minecraft:village_plains");
-            ClownRaid.LOGGER.info("I tried to spawn a Plains village!");
+            //TODO: Place the Circus
         }
     }
 

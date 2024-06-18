@@ -13,7 +13,6 @@ public final class ServerWorldSpawnersUtil
         List<SpecialSpawner> spawnerList = new ArrayList<>(((ServerWorldAccessor) world).getSpawners());
         spawnerList.add(spawner);
         ((ServerWorldAccessor) world).setSpawners(spawnerList);
-        ClownRaid.LOGGER.info(((ServerWorldAccessor) world).getSpawners().toString());
     }
 
     private ServerWorldSpawnersUtil() {
