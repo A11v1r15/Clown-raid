@@ -4,12 +4,9 @@ import java.util.Optional;
 
 import net.a11v1r15.clownraid.entity.ParaderEntity;
 import net.a11v1r15.clownraid.entity.PresenterEntity;
-import net.a11v1r15.clownraid.mixin.ServerWorldAccessor;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnLocation;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.passive.TraderLlamaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -25,30 +22,22 @@ import net.minecraft.world.spawner.SpecialSpawner;
 import org.jetbrains.annotations.Nullable;
 
 public class ParadeSpawner implements SpecialSpawner {
-    private static final int DEFAULT_SPAWN_TIMER = 100;//1200;
-    public static final int DEFAULT_SPAWN_DELAY = 200;//24000;
+    private static final int DEFAULT_SPAWN_TIMER = 1200;
+    public static final int DEFAULT_SPAWN_DELAY = 24000;
     private static final int MIN_SPAWN_CHANCE = 25;
     private static final int MAX_SPAWN_CHANCE = 75;
-    private static final int DEFAULT_SPAWN_CHANCE = 75;//25;
+    private static final int DEFAULT_SPAWN_CHANCE = 25;
     private static final int field_30635 = 10;
     private static final int field_30636 = 10;
     private final Random random = Random.create();
-    //private final ServerWorldProperties properties;
     private int spawnTimer;
     private int spawnDelay;
     private int spawnChance;
 
-    public ParadeSpawner(/*ServerWorldProperties properties*/) {
-        //this.properties = properties;
+    public ParadeSpawner() {
         this.spawnTimer = DEFAULT_SPAWN_TIMER;
-        this.spawnDelay = 0;//properties.getPresenterSpawnDelay();
-        this.spawnChance = 0;//properties.getPresenterSpawnChance();
-        if (this.spawnDelay == 0 && this.spawnChance == 0) {
-            this.spawnDelay = DEFAULT_SPAWN_DELAY;
-            //properties.setPresenterSpawnDelay(this.spawnDelay);
-            this.spawnChance = DEFAULT_SPAWN_CHANCE;
-            //properties.setPresenterSpawnChance(this.spawnChance);
-        }
+        this.spawnDelay = DEFAULT_SPAWN_DELAY;
+        this.spawnChance = DEFAULT_SPAWN_CHANCE;
     }
 
     @Override
@@ -60,7 +49,6 @@ public class ParadeSpawner implements SpecialSpawner {
         } else {
             this.spawnTimer = DEFAULT_SPAWN_TIMER;
             this.spawnDelay -= DEFAULT_SPAWN_TIMER;
-            //this.properties.setPresenterSpawnDelay(this.spawnDelay);
             if (this.spawnDelay > 0) {
                 return 0;
             } else {
@@ -70,7 +58,6 @@ public class ParadeSpawner implements SpecialSpawner {
                 } else {
                     int i = this.spawnChance;
                     this.spawnChance = MathHelper.clamp(this.spawnChance + DEFAULT_SPAWN_CHANCE, MIN_SPAWN_CHANCE, MAX_SPAWN_CHANCE);
-                    //this.properties.setPresenterSpawnChance(this.spawnChance);
                     if (this.random.nextInt(100) > i) {
                         return 0;
                     } else if (this.trySpawn(world)) {
@@ -88,7 +75,7 @@ public class ParadeSpawner implements SpecialSpawner {
         PlayerEntity playerEntity = world.getRandomAlivePlayer();
         if (playerEntity == null) {
             return true;
-        } else if (this.random.nextInt(10) != 0) {
+        } else if (this.random.nextInt(15) != 0) {
             return false;
         } else {
             BlockPos blockPos = playerEntity.getBlockPos();
@@ -111,7 +98,6 @@ public class ParadeSpawner implements SpecialSpawner {
                         }
                     }
 
-                    //this.properties.setPresenterId(presenterEntity.getUuid());
                     presenterEntity.setDespawnDelay(DEFAULT_SPAWN_DELAY);
                     presenterEntity.setWanderTarget(blockPos2);
                     presenterEntity.setPositionTarget(blockPos2, 16);
@@ -125,13 +111,12 @@ public class ParadeSpawner implements SpecialSpawner {
     private ParaderEntity spawnParader(ServerWorld world, PresenterEntity presenter) {
         BlockPos blockPos = this.getNearbySpawnPos(world, presenter.getBlockPos(), 4);
         if (blockPos != null) {
-            ParaderEntity parader = switch (this.random.nextInt(3)) {
+            return switch (this.random.nextInt(3)) {
                 case 0 -> ClownRaid.MARCHER.spawn(world, blockPos, SpawnReason.EVENT);
                 case 1 -> ClownRaid.SELLER.spawn(world, blockPos, SpawnReason.EVENT);
                 case 2 -> ClownRaid.CLOWN.spawn(world, blockPos, SpawnReason.EVENT);
                 default -> null;
             };
-            return parader;
         }
         return null;
     }
