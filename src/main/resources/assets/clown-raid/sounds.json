@@ -1,0 +1,406 @@
+{
+  "entity.presenter.ambient": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/idle1",
+      "minecraft:mob/wandering_trader/idle2",
+      "minecraft:mob/wandering_trader/idle3",
+      "minecraft:mob/wandering_trader/idle4",
+      "minecraft:mob/wandering_trader/idle5"
+    ],
+    "subtitle": "subtitles.entity.presenter.ambient"
+  },
+  "entity.presenter.death": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/death"
+    ],
+    "subtitle": "subtitles.entity.presenter.death"
+  },
+  "entity.presenter.disappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.presenter.disappeared"
+  },
+  "entity.presenter.drink_milk": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/drink_milk1",
+      "minecraft:mob/wandering_trader/drink_milk2",
+      "minecraft:mob/wandering_trader/drink_milk3",
+      "minecraft:mob/wandering_trader/drink_milk4",
+      "minecraft:mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "subtitles.entity.presenter.drink_milk"
+  },
+  "entity.presenter.drink_potion": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/drink_potion",
+        "volume": 0.7
+      },
+      {
+        "name": "random/drink",
+        "volume": 0.65
+      }
+    ],
+    "subtitle": "subtitles.entity.presenter.drink_potion"
+  },
+  "entity.presenter.hurt": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/hurt1",
+      "minecraft:mob/wandering_trader/hurt2",
+      "minecraft:mob/wandering_trader/hurt3",
+      "minecraft:mob/wandering_trader/hurt4"
+    ],
+    "subtitle": "subtitles.entity.presenter.hurt"
+  },
+  "entity.presenter.no": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/no1",
+      "minecraft:mob/wandering_trader/no2",
+      "minecraft:mob/wandering_trader/no3",
+      "minecraft:mob/wandering_trader/no4",
+      "minecraft:mob/wandering_trader/no5"
+    ],
+    "subtitle": "subtitles.entity.presenter.no"
+  },
+  "entity.presenter.reappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.presenter.reappeared"
+  },
+  "entity.presenter.trade": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/haggle1",
+      "minecraft:mob/wandering_trader/haggle2",
+      "minecraft:mob/wandering_trader/haggle3"
+    ],
+    "subtitle": "subtitles.entity.presenter.trade"
+  },
+  "entity.presenter.yes": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/yes1",
+      "minecraft:mob/wandering_trader/yes2",
+      "minecraft:mob/wandering_trader/yes3",
+      "minecraft:mob/wandering_trader/yes4"
+    ],
+    "subtitle": "subtitles.entity.presenter.yes"
+  },
+  "entity.marcher.ambient": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/idle1",
+      "minecraft:mob/wandering_trader/idle2",
+      "minecraft:mob/wandering_trader/idle3",
+      "minecraft:mob/wandering_trader/idle4",
+      "minecraft:mob/wandering_trader/idle5"
+    ],
+    "subtitle": "subtitles.entity.marcher.ambient"
+  },
+  "entity.marcher.death": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/death"
+    ],
+    "subtitle": "subtitles.entity.marcher.death"
+  },
+  "entity.marcher.disappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.marcher.disappeared"
+  },
+  "entity.marcher.drink_milk": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/drink_milk1",
+      "minecraft:mob/wandering_trader/drink_milk2",
+      "minecraft:mob/wandering_trader/drink_milk3",
+      "minecraft:mob/wandering_trader/drink_milk4",
+      "minecraft:mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "subtitles.entity.marcher.drink_milk"
+  },
+  "entity.marcher.drink_potion": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/drink_potion",
+        "volume": 0.7
+      },
+      {
+        "name": "random/drink",
+        "volume": 0.65
+      }
+    ],
+    "subtitle": "subtitles.entity.marcher.drink_potion"
+  },
+  "entity.marcher.hurt": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/hurt1",
+      "minecraft:mob/wandering_trader/hurt2",
+      "minecraft:mob/wandering_trader/hurt3",
+      "minecraft:mob/wandering_trader/hurt4"
+    ],
+    "subtitle": "subtitles.entity.marcher.hurt"
+  },
+  "entity.marcher.no": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/no1",
+      "minecraft:mob/wandering_trader/no2",
+      "minecraft:mob/wandering_trader/no3",
+      "minecraft:mob/wandering_trader/no4",
+      "minecraft:mob/wandering_trader/no5"
+    ],
+    "subtitle": "subtitles.entity.marcher.no"
+  },
+  "entity.marcher.reappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.marcher.reappeared"
+  },
+  "entity.marcher.trade": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/haggle1",
+      "minecraft:mob/wandering_trader/haggle2",
+      "minecraft:mob/wandering_trader/haggle3"
+    ],
+    "subtitle": "subtitles.entity.marcher.trade"
+  },
+  "entity.marcher.yes": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/yes1",
+      "minecraft:mob/wandering_trader/yes2",
+      "minecraft:mob/wandering_trader/yes3",
+      "minecraft:mob/wandering_trader/yes4"
+    ],
+    "subtitle": "subtitles.entity.marcher.yes"
+  },
+  "entity.seller.ambient": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/idle1",
+      "minecraft:mob/wandering_trader/idle2",
+      "minecraft:mob/wandering_trader/idle3",
+      "minecraft:mob/wandering_trader/idle4",
+      "minecraft:mob/wandering_trader/idle5"
+    ],
+    "subtitle": "subtitles.entity.seller.ambient"
+  },
+  "entity.seller.death": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/death"
+    ],
+    "subtitle": "subtitles.entity.seller.death"
+  },
+  "entity.seller.disappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.seller.disappeared"
+  },
+  "entity.seller.drink_milk": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/drink_milk1",
+      "minecraft:mob/wandering_trader/drink_milk2",
+      "minecraft:mob/wandering_trader/drink_milk3",
+      "minecraft:mob/wandering_trader/drink_milk4",
+      "minecraft:mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "subtitles.entity.seller.drink_milk"
+  },
+  "entity.seller.drink_potion": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/drink_potion",
+        "volume": 0.7
+      },
+      {
+        "name": "random/drink",
+        "volume": 0.65
+      }
+    ],
+    "subtitle": "subtitles.entity.seller.drink_potion"
+  },
+  "entity.seller.hurt": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/hurt1",
+      "minecraft:mob/wandering_trader/hurt2",
+      "minecraft:mob/wandering_trader/hurt3",
+      "minecraft:mob/wandering_trader/hurt4"
+    ],
+    "subtitle": "subtitles.entity.seller.hurt"
+  },
+  "entity.seller.no": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/no1",
+      "minecraft:mob/wandering_trader/no2",
+      "minecraft:mob/wandering_trader/no3",
+      "minecraft:mob/wandering_trader/no4",
+      "minecraft:mob/wandering_trader/no5"
+    ],
+    "subtitle": "subtitles.entity.seller.no"
+  },
+  "entity.seller.reappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.seller.reappeared"
+  },
+  "entity.seller.trade": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/haggle1",
+      "minecraft:mob/wandering_trader/haggle2",
+      "minecraft:mob/wandering_trader/haggle3"
+    ],
+    "subtitle": "subtitles.entity.seller.trade"
+  },
+  "entity.seller.yes": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/yes1",
+      "minecraft:mob/wandering_trader/yes2",
+      "minecraft:mob/wandering_trader/yes3",
+      "minecraft:mob/wandering_trader/yes4"
+    ],
+    "subtitle": "subtitles.entity.seller.yes"
+  },
+  "entity.clown.ambient": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/idle1",
+      "minecraft:mob/wandering_trader/idle2",
+      "minecraft:mob/wandering_trader/idle3",
+      "minecraft:mob/wandering_trader/idle4",
+      "minecraft:mob/wandering_trader/idle5"
+    ],
+    "subtitle": "subtitles.entity.clown.ambient"
+  },
+  "entity.clown.death": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/death"
+    ],
+    "subtitle": "subtitles.entity.clown.death"
+  },
+  "entity.clown.disappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.clown.disappeared"
+  },
+  "entity.clown.drink_milk": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/drink_milk1",
+      "minecraft:mob/wandering_trader/drink_milk2",
+      "minecraft:mob/wandering_trader/drink_milk3",
+      "minecraft:mob/wandering_trader/drink_milk4",
+      "minecraft:mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "subtitles.entity.clown.drink_milk"
+  },
+  "entity.clown.drink_potion": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/drink_potion",
+        "volume": 0.7
+      },
+      {
+        "name": "random/drink",
+        "volume": 0.65
+      }
+    ],
+    "subtitle": "subtitles.entity.clown.drink_potion"
+  },
+  "entity.clown.hurt": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/hurt1",
+      "minecraft:mob/wandering_trader/hurt2",
+      "minecraft:mob/wandering_trader/hurt3",
+      "minecraft:mob/wandering_trader/hurt4"
+    ],
+    "subtitle": "subtitles.entity.clown.hurt"
+  },
+  "entity.clown.no": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/no1",
+      "minecraft:mob/wandering_trader/no2",
+      "minecraft:mob/wandering_trader/no3",
+      "minecraft:mob/wandering_trader/no4",
+      "minecraft:mob/wandering_trader/no5"
+    ],
+    "subtitle": "subtitles.entity.clown.no"
+  },
+  "entity.clown.reappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.clown.reappeared"
+  },
+  "entity.clown.trade": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/haggle1",
+      "minecraft:mob/wandering_trader/haggle2",
+      "minecraft:mob/wandering_trader/haggle3"
+    ],
+    "subtitle": "subtitles.entity.clown.trade"
+  },
+  "entity.clown.yes": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/yes1",
+      "minecraft:mob/wandering_trader/yes2",
+      "minecraft:mob/wandering_trader/yes3",
+      "minecraft:mob/wandering_trader/yes4"
+    ],
+    "subtitle": "subtitles.entity.clown.yes"
+  }
+}

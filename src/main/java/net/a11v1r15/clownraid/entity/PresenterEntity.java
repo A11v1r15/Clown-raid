@@ -5,10 +5,13 @@ import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.NightSkipListenner;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -123,5 +126,29 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
 
     @Override
     public void stopFollowing() {
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return this.hasCustomer() ? ClownRaid.ENTITY_PRESENTER_TRADE : ClownRaid.ENTITY_PRESENTER_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ClownRaid.ENTITY_PRESENTER_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return ClownRaid.ENTITY_PRESENTER_DEATH;
+    }
+
+    protected SoundEvent getDrinkSound(ItemStack stack) {
+        return stack.isOf(Items.MILK_BUCKET) ? ClownRaid.ENTITY_PRESENTER_DRINK_MILK : ClownRaid.ENTITY_PRESENTER_DRINK_POTION;
+    }
+
+    protected SoundEvent getTradingSound(boolean sold) {
+        return sold ? ClownRaid.ENTITY_PRESENTER_YES : ClownRaid.ENTITY_PRESENTER_NO;
+    }
+
+    public SoundEvent getYesSound() {
+        return ClownRaid.ENTITY_PRESENTER_YES;
     }
 }

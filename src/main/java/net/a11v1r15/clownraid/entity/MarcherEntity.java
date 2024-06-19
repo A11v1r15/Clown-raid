@@ -83,4 +83,28 @@ public class MarcherEntity extends ParaderEntity {
             return super.interactMob(player, hand);
         }
     }
+
+    protected SoundEvent getAmbientSound() {
+        return this.hasCustomer() ? ClownRaid.ENTITY_MARCHER_TRADE : ClownRaid.ENTITY_MARCHER_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ClownRaid.ENTITY_MARCHER_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return ClownRaid.ENTITY_MARCHER_DEATH;
+    }
+
+    protected SoundEvent getDrinkSound(ItemStack stack) {
+        return stack.isOf(Items.MILK_BUCKET) ? ClownRaid.ENTITY_MARCHER_DRINK_MILK : ClownRaid.ENTITY_MARCHER_DRINK_POTION;
+    }
+
+    protected SoundEvent getTradingSound(boolean sold) {
+        return sold ? ClownRaid.ENTITY_MARCHER_YES : ClownRaid.ENTITY_MARCHER_NO;
+    }
+
+    public SoundEvent getYesSound() {
+        return ClownRaid.ENTITY_MARCHER_YES;
+    }
 }

@@ -5,10 +5,13 @@ import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -75,5 +78,29 @@ public class SellerEntity extends ParaderEntity {
                 tradeOfferList.add(tradeOffer);
             }
         }
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return this.hasCustomer() ? ClownRaid.ENTITY_SELLER_TRADE : ClownRaid.ENTITY_SELLER_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ClownRaid.ENTITY_SELLER_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return ClownRaid.ENTITY_SELLER_DEATH;
+    }
+
+    protected SoundEvent getDrinkSound(ItemStack stack) {
+        return stack.isOf(Items.MILK_BUCKET) ? ClownRaid.ENTITY_SELLER_DRINK_MILK : ClownRaid.ENTITY_SELLER_DRINK_POTION;
+    }
+
+    protected SoundEvent getTradingSound(boolean sold) {
+        return sold ? ClownRaid.ENTITY_SELLER_YES : ClownRaid.ENTITY_SELLER_NO;
+    }
+
+    public SoundEvent getYesSound() {
+        return ClownRaid.ENTITY_SELLER_YES;
     }
 }
