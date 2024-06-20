@@ -72,7 +72,6 @@ public class MarcherEntity extends ParaderEntity {
                     Instrument instrument = myItemStack.getComponents().get(DataComponentTypes.INSTRUMENT).value();
                     SoundEvent soundEvent = instrument.soundEvent().value();
                     float f = instrument.range() / 16F;
-                    ClownRaid.LOGGER.info(instrument.soundEvent().toString());
                     this.getWorld().playSoundFromEntity(this, soundEvent, SoundCategory.RECORDS, f, 1.0F);
                     this.getWorld().emitGameEvent(GameEvent.INSTRUMENT_PLAY, this.getPos(), GameEvent.Emitter.of(this));
                     return ActionResult.SUCCESS;
