@@ -100,6 +100,107 @@
     ],
     "subtitle": "subtitles.entity.presenter.yes"
   },
+  "entity.magician.ambient": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/idle1",
+      "minecraft:mob/wandering_trader/idle2",
+      "minecraft:mob/wandering_trader/idle3",
+      "minecraft:mob/wandering_trader/idle4",
+      "minecraft:mob/wandering_trader/idle5"
+    ],
+    "subtitle": "subtitles.entity.magician.ambient"
+  },
+  "entity.magician.death": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/death"
+    ],
+    "subtitle": "subtitles.entity.magician.death"
+  },
+  "entity.magician.disappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/disappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.magician.disappeared"
+  },
+  "entity.magician.drink_milk": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/drink_milk1",
+      "minecraft:mob/wandering_trader/drink_milk2",
+      "minecraft:mob/wandering_trader/drink_milk3",
+      "minecraft:mob/wandering_trader/drink_milk4",
+      "minecraft:mob/wandering_trader/drink_milk5"
+    ],
+    "subtitle": "subtitles.entity.magician.drink_milk"
+  },
+  "entity.magician.drink_potion": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/drink_potion",
+        "volume": 0.7
+      },
+      {
+        "name": "random/drink",
+        "volume": 0.65
+      }
+    ],
+    "subtitle": "subtitles.entity.magician.drink_potion"
+  },
+  "entity.magician.hurt": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/hurt1",
+      "minecraft:mob/wandering_trader/hurt2",
+      "minecraft:mob/wandering_trader/hurt3",
+      "minecraft:mob/wandering_trader/hurt4"
+    ],
+    "subtitle": "subtitles.entity.magician.hurt"
+  },
+  "entity.magician.no": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/no1",
+      "minecraft:mob/wandering_trader/no2",
+      "minecraft:mob/wandering_trader/no3",
+      "minecraft:mob/wandering_trader/no4",
+      "minecraft:mob/wandering_trader/no5"
+    ],
+    "subtitle": "subtitles.entity.magician.no"
+  },
+  "entity.magician.reappeared": {
+    "sounds": [
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared1",
+        "volume": 0.8
+      },
+      {
+        "name": "minecraft:mob/wandering_trader/reappeared2",
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "subtitles.entity.magician.reappeared"
+  },
+  "entity.magician.trade": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/haggle1",
+      "minecraft:mob/wandering_trader/haggle2",
+      "minecraft:mob/wandering_trader/haggle3"
+    ],
+    "subtitle": "subtitles.entity.magician.trade"
+  },
+  "entity.magician.yes": {
+    "sounds": [
+      "minecraft:mob/wandering_trader/yes1",
+      "minecraft:mob/wandering_trader/yes2",
+      "minecraft:mob/wandering_trader/yes3",
+      "minecraft:mob/wandering_trader/yes4"
+    ],
+    "subtitle": "subtitles.entity.magician.yes"
+  },
   "entity.marcher.ambient": {
     "sounds": [
       "minecraft:mob/wandering_trader/idle1",

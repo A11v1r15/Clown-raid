@@ -64,6 +64,30 @@ public class ClownRaidTrades {
                 }
             )
         );
+    public static final Int2ObjectMap<TradeOffers.Factory[]> MAGICIAN_TRADES =
+        copyToFastUtilMap(ImmutableMap.of(
+            1, //All items
+                new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(Items.PUMPKIN_PIE, 3,  3,  8,  6),
+                        new SellForCurrencyItemFactory(Items.EGG,  6,  16,  4, 6),
+                        new SellForCurrencyItemFactory(Items.SNOWBALL,  6,  16,  4, 6),
+                        new SellForCurrencyItemFactory(Items.CAKE, 12, 1,  8, 6)
+                },
+            2, //Premium Items
+                new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(Items.TNT, TerrificTickets.TOKEN, 16, 1,  3, 24),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_BOOTS, 16,  1,  2,  24),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_HAIR, 16,  1,  2,  24),
+                },
+            3, //The Funny, multiple of them for chance
+                new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 128, 1, 1, 3),
+                        new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 64, 1, 1, 3),
+                        new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 64, 1, 1, 32),
+                        new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 16, 1, 1, 320)
+                }
+            )
+        );
     public static final Int2ObjectMap<TradeOffers.Factory[]> SELLER_TRADES =
         copyToFastUtilMap(ImmutableMap.of(
             1, //Food Items

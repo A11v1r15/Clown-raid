@@ -111,10 +111,11 @@ public class ParadeSpawner implements SpecialSpawner {
     private ParaderEntity spawnParader(ServerWorld world, PresenterEntity presenter) {
         BlockPos blockPos = this.getNearbySpawnPos(world, presenter.getBlockPos(), 4);
         if (blockPos != null) {
-            return switch (this.random.nextInt(3)) {
-                case 0 -> ClownRaid.MARCHER.spawn(world, blockPos, SpawnReason.EVENT);
-                case 1 -> ClownRaid.SELLER.spawn(world, blockPos, SpawnReason.EVENT);
-                case 2 -> ClownRaid.CLOWN.spawn(world, blockPos, SpawnReason.EVENT);
+            return switch (this.random.nextInt(4)) {
+                case 0 -> ClownRaid.MAGICIAN.spawn(world, blockPos, SpawnReason.EVENT);
+                case 1 -> ClownRaid.MARCHER.spawn(world, blockPos, SpawnReason.EVENT);
+                case 2 -> ClownRaid.SELLER.spawn(world, blockPos, SpawnReason.EVENT);
+                case 3 -> ClownRaid.CLOWN.spawn(world, blockPos, SpawnReason.EVENT);
                 default -> null;
             };
         }
