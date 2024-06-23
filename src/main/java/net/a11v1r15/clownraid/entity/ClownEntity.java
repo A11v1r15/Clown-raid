@@ -80,15 +80,18 @@ public class ClownEntity extends ParaderEntity {
     protected void fillRecipes() {
         TradeOffers.Factory[] factories =  ClownRaidTrades.CLOWN_TRADES.get(1);
         TradeOffers.Factory[] factories2 = ClownRaidTrades.CLOWN_TRADES.get(2);
-        if (factories != null && factories2 != null) {
+        TradeOffers.Factory[] factories3 = ClownRaidTrades.CLOWN_TRADES.get(3);
+        if (factories != null && factories2 != null && factories3 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 2);
+            this.fillRecipesFromPool(tradeOfferList, factories, 3);
             int i = this.random.nextInt(factories2.length);
-            TradeOffers.Factory factory = factories2[i];
-            TradeOffer tradeOffer = factory.create(this, this.random);
-            if (tradeOffer != null) {
-                tradeOfferList.add(tradeOffer);
-            }
+            int j = this.random.nextInt(factories3.length);
+            TradeOffers.Factory factory1 = factories2[i];
+            TradeOffers.Factory factory2 = factories3[j];
+            TradeOffer tradeOffer1 = factory1.create(this, this.random);
+            TradeOffer tradeOffer2 = factory2.create(this, this.random);
+            if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
+            if (tradeOffer2 != null) {tradeOfferList.add(tradeOffer2);}
         }
     }
 

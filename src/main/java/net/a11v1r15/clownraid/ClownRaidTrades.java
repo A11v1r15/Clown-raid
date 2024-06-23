@@ -3,6 +3,7 @@ package net.a11v1r15.clownraid;
 import com.google.common.collect.ImmutableMap;
 import gay.lemmaeof.ducktor.Ducktor;
 import gay.lemmaeof.terrifictickets.TerrificTickets;
+import io.github.afamiliarquiet.item.MawItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.component.ComponentType;
@@ -112,12 +113,16 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(Items.SNOWBALL,  6,  16,  4, 6),
                         new SellForCurrencyItemFactory(Items.CAKE, 12, 1,  8, 6),
                         new SellForCurrencyItemFactory(Items.SUNFLOWER, 1, 6,  16, 3),
-                        new SellForCurrencyItemFactory(Items.TNT, 16, 1,  6, 12),
-                        new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  7,  7,  7,  1),
                         new SellForCurrencyItemFactory(Items.CARVED_PUMPKIN, Enchantments.BINDING_CURSE, 1,3,  1, 8, 1),
-                        new SellForCurrencyItemFactory(Items.SUSPICIOUS_STEW, 3,  1, 8, 1, new Pair<>(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, new SuspiciousStewEffectsComponent(List.of(new SuspiciousStewEffectsComponent.StewEffect(StatusEffects.BLINDNESS, 99999)))))
+                        new SellForCurrencyItemFactory(Items.SUSPICIOUS_STEW, 3,  1, 8, 1, new Pair<>(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, new SuspiciousStewEffectsComponent(List.of(new SuspiciousStewEffectsComponent.StewEffect(StatusEffects.BLINDNESS, 666)))))
                 },
-            2, //The Funny, multiple of them for chance
+            2, //Premium Items
+                new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(Items.TNT, TerrificTickets.TOKEN, 16, 1,  3, 24),
+                        new SellForCurrencyItemFactory(MawItems.CURIOUS_VIAL, TerrificTickets.TOKEN, 16, 1,  12, 24),
+                        new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  7,  4,  7,  24),
+                },
+            3, //The Funny, multiple of them for chance
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 128, 1, 1, 3),
                         new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 64, 1, 1, 3),
@@ -192,7 +197,7 @@ public class ClownRaidTrades {
             for (Pair<ComponentType, Object> component : this.components){
                 ComponentType componentType = component.getLeft();
                 Object value = component.getRight();
-                itemStack.set(componentType, component.getRight());
+                itemStack.set(componentType, value);
             }
             return new TradeOffer(this.currency, itemStack, this.maxUses, this.experience, this.multiplier);
         }
