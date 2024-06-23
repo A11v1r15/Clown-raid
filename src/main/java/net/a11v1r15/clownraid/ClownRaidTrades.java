@@ -1,7 +1,6 @@
 package net.a11v1r15.clownraid;
 
 import com.google.common.collect.ImmutableMap;
-import dev.callmeecho.bombastic.main.Bombastic;
 import dev.callmeecho.bombastic.main.registry.BombasticItemRegistrar;
 import gay.lemmaeof.ducktor.Ducktor;
 import gay.lemmaeof.terrifictickets.TerrificTickets;
@@ -77,7 +76,7 @@ public class ClownRaidTrades {
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Items.TNT, TerrificTickets.TOKEN, 16, 1,  3, 24),
                         new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_BOOTS, 16,  1,  2,  24),
-                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_HAIR, 16,  1,  2,  24),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_HAIR, 16,  1,  2,  24)
                 },
             3, //The Funny, multiple of them for chance
                 new TradeOffers.Factory[]{
@@ -151,7 +150,7 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  16,  8,  7,  24),
                         new SellForCurrencyItemFactory(BombasticItemRegistrar.PIPE_BOMB, 64,  16,  2,  64),
                         new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_BOOTS, 16,  1,  2,  24),
-                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_HAIR, 16,  1,  2,  24),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_HAIR, 16,  1,  2,  24)
                 },
             3, //The Funny, multiple of them for chance
                 new TradeOffers.Factory[]{

@@ -30,11 +30,11 @@ import net.minecraft.world.World;
 public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = switch (this.random.nextInt(2)){
+        /*ItemStack headItem = switch (this.random.nextInt(2)){
             case 0 -> null;
             default -> null;
         };
-        this.equipStack(EquipmentSlot.HEAD, headItem);
+        this.equipStack(EquipmentSlot.HEAD, headItem);*/
     }
 
     protected void initGoals() {
