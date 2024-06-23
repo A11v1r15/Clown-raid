@@ -1,6 +1,5 @@
 package net.a11v1r15.clownraid.mixin;
 
-import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.NightSkipListenner;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.EntityList;
