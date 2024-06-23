@@ -1,11 +1,13 @@
 package net.a11v1r15.clownraid;
 
 import com.google.common.collect.ImmutableMap;
+import gay.lemmaeof.ducktor.Ducktor;
 import gay.lemmaeof.terrifictickets.TerrificTickets;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.component.type.SuspiciousStewEffectsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -30,7 +32,7 @@ import java.util.List;
 public class ClownRaidTrades {
     public static final Int2ObjectMap<TradeOffers.Factory[]> PRESENTER_TRADES =
         copyToFastUtilMap(ImmutableMap.of(
-            1,
+            1, //Tickets
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(TerrificTickets.TICKET, Items.EMERALD,  6,  32,  8,  6),
                         new SellForCurrencyItemFactory(TerrificTickets.TICKET, Items.EMERALD, 12,  64,  4, 12),
@@ -41,7 +43,7 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(TerrificTickets.TICKET, Items.DIAMOND, 12, 128,  2, 24),
                         new SellForCurrencyItemFactory(TerrificTickets.TICKET, Items.DIAMOND, 24, 256,  1, 48)
                 },
-            2,
+            2, //Tokens
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(TerrificTickets.TOKEN, Items.EMERALD,  6,  16,  8,  6),
                         new SellForCurrencyItemFactory(TerrificTickets.TOKEN, Items.EMERALD, 12,  64,  4, 12),
@@ -52,7 +54,7 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(TerrificTickets.TOKEN, Items.DIAMOND, 12,  64,  2, 24),
                         new SellForCurrencyItemFactory(TerrificTickets.TOKEN, Items.DIAMOND, 24, 128,  1, 48)
                 },
-            3,
+            3, //Pass card
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(TerrificTickets.PASSCARD, Items.EMERALD, 32, 1, 1, 32),
                         new SellForCurrencyItemFactory(TerrificTickets.PASSCARD, Items.DIAMOND, 16, 1, 1, 32)
@@ -61,7 +63,7 @@ public class ClownRaidTrades {
         );
     public static final Int2ObjectMap<TradeOffers.Factory[]> SELLER_TRADES =
         copyToFastUtilMap(ImmutableMap.of(
-            1,
+            1, //Food Items
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Items.GOLDEN_APPLE, TerrificTickets.TOKEN,  16,  1,  3,  1),
                         new SellForCurrencyItemFactory(Items.GOLDEN_CARROT,  6,  5,  4, 1),
@@ -70,7 +72,7 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(Items.BAKED_POTATO, 4, 16,  16, 1),
                         new SellForCurrencyItemFactory(Items.MILK_BUCKET, 10, 1,  16, 1)
                 },
-            2,
+            2, //Flowers
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Items.ALLIUM,  1,  7,  7,  1),
                         new SellForCurrencyItemFactory(Items.AZURE_BLUET,  1,  7,  7,  1),
@@ -84,12 +86,26 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(Items.PINK_TULIP,  1,  7,  7,  1),
                         new SellForCurrencyItemFactory(Items.RED_TULIP,  1,  7,  7,  1),
                         new SellForCurrencyItemFactory(Items.WHITE_TULIP,  1,  7,  7,  1)
+                },
+            3, //Ductor
+                new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(Items.WARPED_FUNGUS,  3,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Items.SWEET_BERRIES,  3,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Ducktor.LOZENGE,  5,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Ducktor.SCENTED_CANDLE,  7,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Ducktor.LOZENGE,  5,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Ducktor.SCENTED_CANDLE,  7,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  7,  7,  7,  1),
+                        new SellForCurrencyItemFactory(Items.POTION,  3,  1,  7,  1, new Pair<>(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Ducktor.MAGNIFICENT_POTION))),
+                        new SellForCurrencyItemFactory(Items.POTION,  6,  1,  7,  1, new Pair<>(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Ducktor.REJUVENATION_POTION))),
+                        new SellForCurrencyItemFactory(Items.POTION,  12,  1,  7,  1, new Pair<>(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Ducktor.LONG_REJUVENATION_POTION))),
+                        new SellForCurrencyItemFactory(Items.POTION,  12,  1,  7,  1, new Pair<>(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Ducktor.STRONG_REJUVENATION_POTION)))
                 }
             )
         );
     public static final Int2ObjectMap<TradeOffers.Factory[]> CLOWN_TRADES =
         copyToFastUtilMap(ImmutableMap.of(
-            1,
+            1, //All items
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Items.PUMPKIN_PIE, 3,  3,  8,  6),
                         new SellForCurrencyItemFactory(Items.EGG,  6,  16,  4, 6),
@@ -97,10 +113,11 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(Items.CAKE, 12, 1,  8, 6),
                         new SellForCurrencyItemFactory(Items.SUNFLOWER, 1, 6,  16, 3),
                         new SellForCurrencyItemFactory(Items.TNT, 16, 1,  6, 12),
+                        new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  7,  7,  7,  1),
                         new SellForCurrencyItemFactory(Items.CARVED_PUMPKIN, Enchantments.BINDING_CURSE, 1,3,  1, 8, 1),
                         new SellForCurrencyItemFactory(Items.SUSPICIOUS_STEW, 3,  1, 8, 1, new Pair<>(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, new SuspiciousStewEffectsComponent(List.of(new SuspiciousStewEffectsComponent.StewEffect(StatusEffects.BLINDNESS, 99999)))))
                 },
-            2,
+            2, //The Funny, multiple of them for chance
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 128, 1, 1, 3),
                         new SellForCurrencyItemFactory(Honque.THE_FUNNY, TerrificTickets.TOKEN, 64, 1, 1, 3),
