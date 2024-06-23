@@ -55,8 +55,10 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	// Modfest:Carnival Mods
 	modImplementation "maven.modrinth:ducktor:1.0.0+1.21"
 	modImplementation "maven.modrinth:magnificent-maw:1.1.0"
+	modImplementation "maven.modrinth:bombastic:1.0.1"
 	modImplementation include("gay.lemmaeof:terrifictickets:0.1.2+1.21-pre3")
 	modImplementation include("maven.modrinth:confetti-lib:1.2.0+1.21")
 	modImplementation include("maven.modrinth:honque:1.0.0")

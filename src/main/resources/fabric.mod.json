@@ -39,7 +39,8 @@
 		"java": ">=21",
 		"fabric-api": "*",
 		"ducktor": "*",
-		"magnificent-maw": "*"
+		"magnificent-maw": ">=1.1.0",
+		"bombastic": ">=1.0.1"
 	},
 	"accessWidener" : "clown-raid.accesswidener",
 	"suggests": {

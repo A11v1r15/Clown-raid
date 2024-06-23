@@ -1,6 +1,8 @@
 package net.a11v1r15.clownraid;
 
 import com.google.common.collect.ImmutableMap;
+import dev.callmeecho.bombastic.main.Bombastic;
+import dev.callmeecho.bombastic.main.registry.BombasticItemRegistrar;
 import gay.lemmaeof.ducktor.Ducktor;
 import gay.lemmaeof.terrifictickets.TerrificTickets;
 import io.github.afamiliarquiet.item.MawItems;
@@ -108,19 +110,24 @@ public class ClownRaidTrades {
         copyToFastUtilMap(ImmutableMap.of(
             1, //All items
                 new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.PARTY_POPPER, 3,  8,  8,  6),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.JUGGLING_BALL, 6,  1,  8,  6),
                         new SellForCurrencyItemFactory(Items.PUMPKIN_PIE, 3,  3,  8,  6),
                         new SellForCurrencyItemFactory(Items.EGG,  6,  16,  4, 6),
                         new SellForCurrencyItemFactory(Items.SNOWBALL,  6,  16,  4, 6),
                         new SellForCurrencyItemFactory(Items.CAKE, 12, 1,  8, 6),
                         new SellForCurrencyItemFactory(Items.SUNFLOWER, 1, 6,  16, 3),
-                        new SellForCurrencyItemFactory(Items.CARVED_PUMPKIN, Enchantments.BINDING_CURSE, 1,3,  1, 8, 1),
-                        new SellForCurrencyItemFactory(Items.SUSPICIOUS_STEW, 3,  1, 8, 1, new Pair<>(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, new SuspiciousStewEffectsComponent(List.of(new SuspiciousStewEffectsComponent.StewEffect(StatusEffects.BLINDNESS, 666)))))
+                        new SellForCurrencyItemFactory(Items.CARVED_PUMPKIN, Enchantments.BINDING_CURSE, 1,3,  1, 8, 12),
+                        new SellForCurrencyItemFactory(Items.SUSPICIOUS_STEW, 3,  1, 8, 12, new Pair<>(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, new SuspiciousStewEffectsComponent(List.of(new SuspiciousStewEffectsComponent.StewEffect(StatusEffects.BLINDNESS, 666)))))
                 },
             2, //Premium Items
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Items.TNT, TerrificTickets.TOKEN, 16, 1,  3, 24),
-                        new SellForCurrencyItemFactory(MawItems.CURIOUS_VIAL, TerrificTickets.TOKEN, 16, 1,  12, 24),
-                        new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  7,  4,  7,  24),
+                        new SellForCurrencyItemFactory(MawItems.CURIOUS_VIAL, TerrificTickets.TOKEN, 16, 2,  12, 24),
+                        new SellForCurrencyItemFactory(Ducktor.WARDING_CANDLE, TerrificTickets.TOKEN,  16,  8,  7,  24),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.PIPE_BOMB, 64,  16,  2,  64),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_BOOTS, 16,  1,  2,  24),
+                        new SellForCurrencyItemFactory(BombasticItemRegistrar.CLOWN_HAIR, 16,  1,  2,  24),
                 },
             3, //The Funny, multiple of them for chance
                 new TradeOffers.Factory[]{

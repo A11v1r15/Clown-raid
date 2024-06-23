@@ -1,5 +1,6 @@
 package net.a11v1r15.clownraid.entity;
 
+import dev.callmeecho.bombastic.main.registry.BombasticItemRegistrar;
 import dev.doublekekse.confetti.Confetti;
 import dev.doublekekse.confetti.math.Vec3Dist;
 import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
@@ -31,8 +32,12 @@ import symbolics.division.honque.Honque;
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack theFunny = new ItemStack(Honque.THE_FUNNY);
-        this.equipStack(EquipmentSlot.HEAD, theFunny);
+        ItemStack headItem = switch (this.random.nextInt(2)){
+            case 0 -> new ItemStack(BombasticItemRegistrar.CLOWN_HAIR);
+            default -> new ItemStack(Honque.THE_FUNNY);
+        };
+        this.equipStack(EquipmentSlot.HEAD, headItem);
+        this.equipStack(EquipmentSlot.FEET, new ItemStack(BombasticItemRegistrar.CLOWN_BOOTS));
     }
 
     protected void initGoals() {
