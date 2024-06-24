@@ -32,12 +32,15 @@ import symbolics.division.honque.Honque;
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = switch (this.random.nextInt(2)){
+        ItemStack headItem = switch (this.random.nextInt(4)){
             case 0 -> new ItemStack(BombasticItemRegistrar.CLOWN_HAIR);
+            case 1 -> new ItemStack(Honque.THE_GREEN_FUNNY);
+            case 2 -> new ItemStack(Honque.THE_BLUE_FUNNY);
             default -> new ItemStack(Honque.THE_FUNNY);
         };
         this.equipStack(EquipmentSlot.HEAD, headItem);
-        this.equipStack(EquipmentSlot.FEET, new ItemStack(BombasticItemRegistrar.CLOWN_BOOTS));
+        if (this.random.nextInt(4) == 0)
+            this.equipStack(EquipmentSlot.FEET, new ItemStack(BombasticItemRegistrar.CLOWN_BOOTS));
     }
 
     protected void initGoals() {
