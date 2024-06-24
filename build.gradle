@@ -60,6 +60,7 @@ dependencies {
 	modImplementation "maven.modrinth:magicians_hat:1.0.0"
 	modImplementation "maven.modrinth:ducktor:1.0.0+1.21"
 	modImplementation "maven.modrinth:bombastic:1.0.1"
+	modImplementation "maven.modrinth:trickster:1.0.1"
 	modImplementation include("gay.lemmaeof:terrifictickets:0.1.2+1.21-pre3")
 	modImplementation include("maven.modrinth:confetti-lib:1.2.0+1.21")
 	modImplementation include("maven.modrinth:honque:1.0.0")

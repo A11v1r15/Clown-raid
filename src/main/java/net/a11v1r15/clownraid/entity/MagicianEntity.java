@@ -4,6 +4,7 @@ import com.bug1312.magicians_hat.Register;
 import dev.doublekekse.confetti.Confetti;
 import dev.doublekekse.confetti.math.Vec3Dist;
 import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
+import dev.enjarai.trickster.item.ModItems;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
@@ -32,6 +33,7 @@ public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
         ItemStack headItem = switch (this.random.nextInt(2)){
+            case 0 -> new ItemStack(ModItems.TOP_HAT);
             default -> new ItemStack(Register.HAT_ITEM);
         };
         this.equipStack(EquipmentSlot.HEAD, headItem);

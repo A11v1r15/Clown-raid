@@ -4,6 +4,8 @@ import com.bug1312.magicians_hat.Register;
 import com.google.common.collect.ImmutableMap;
 import dev.callmeecho.bombastic.main.registry.BombasticDataComponentTypeRegistrar;
 import dev.callmeecho.bombastic.main.registry.BombasticItemRegistrar;
+import dev.enjarai.trickster.Trickster;
+import dev.enjarai.trickster.item.ModItems;
 import gay.lemmaeof.ducktor.Ducktor;
 import gay.lemmaeof.terrifictickets.TerrificTickets;
 import io.github.afamiliarquiet.item.MawItems;
@@ -71,13 +73,14 @@ public class ClownRaidTrades {
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(Items.RABBIT_FOOT, 3,  3,  8,  6),
                         new SellForCurrencyItemFactory(Items.RABBIT_HIDE,  6,  1,  6, 6),
-                        new SellForCurrencyItemFactory(Items.SNOWBALL,  6,  16,  4, 6),
-                        new SellForCurrencyItemFactory(Items.CAKE, 12, 1,  8, 6),
+                        new SellForCurrencyItemFactory(ModItems.SCROLL_AND_QUILL,  6,  16,  4, 6),
                         new SellForCurrencyItemFactory(Items.SUSPICIOUS_STEW, 3,  1, 8, 12, new Pair<>(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS, new SuspiciousStewEffectsComponent(List.of(new SuspiciousStewEffectsComponent.StewEffect(StatusEffects.INVISIBILITY, 666)))))
                 },
             2, //Premium Items
                 new TradeOffers.Factory[]{
-                        new SellForCurrencyItemFactory(Items.TNT, TerrificTickets.TOKEN, 16, 1,  3, 24)
+                        new SellForCurrencyItemFactory(ModItems.MIRROR_OF_EVALUATION, TerrificTickets.TOKEN, 16, 1,  3, 24),
+                        new SellForCurrencyItemFactory(ModItems.WAND, TerrificTickets.TOKEN, 16, 1,  3, 24),
+                        new SellForCurrencyItemFactory(ModItems.TOP_HAT, TerrificTickets.TOKEN, 16, 1,  3, 24)
                 },
             3, //The Funny, multiple of them for chance
                 new TradeOffers.Factory[]{
