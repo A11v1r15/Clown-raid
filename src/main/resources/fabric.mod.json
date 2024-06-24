@@ -42,6 +42,7 @@
 		"magicians_hat": ">=1.0.0",
 		"bombastic": ">=1.0.1",
 		"trickster": ">=1.0.1",
+		"wowozela": ">=1.0.0",
 		"ducktor": ">=1.0.0"
 	},
 	"accessWidener" : "clown-raid.accesswidener",

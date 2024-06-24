@@ -1,5 +1,6 @@
 package net.a11v1r15.clownraid;
 
+import com.chailotl.wowozela.Main;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -27,8 +28,12 @@ import net.minecraft.util.math.RotationAxis;
             matrixStack.push();
             matrixStack.translate(0.0F, 0.3F, -0.5F);
             matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180.0F));
-            matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90.0F));
             ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.MAINHAND);
+            float deg = 90.0F;
+            if (itemStack.isOf(Main.WOWOZELA)){
+                deg = 270.0F;
+            }
+            matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(deg));
             this.heldItemRenderer.renderItem(livingEntity, itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, i);
             matrixStack.pop();
         }

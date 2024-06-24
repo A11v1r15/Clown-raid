@@ -61,6 +61,7 @@ dependencies {
 	modImplementation "maven.modrinth:ducktor:1.0.0+1.21"
 	modImplementation "maven.modrinth:bombastic:1.0.1"
 	modImplementation "maven.modrinth:trickster:1.0.1"
+	modImplementation "maven.modrinth:wowozela:1.0.0+modfest"
 	modImplementation include("gay.lemmaeof:terrifictickets:0.1.2+1.21-pre3")
 	modImplementation include("maven.modrinth:confetti-lib:1.2.0+1.21")
 	modImplementation include("maven.modrinth:honque:1.0.0")
