@@ -1,5 +1,6 @@
 package net.a11v1r15.clownraid.entity;
 
+import com.bug1312.magicians_hat.Register;
 import dev.doublekekse.confetti.Confetti;
 import dev.doublekekse.confetti.math.Vec3Dist;
 import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
@@ -30,11 +31,10 @@ import net.minecraft.world.World;
 public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        /*ItemStack headItem = switch (this.random.nextInt(2)){
-            case 0 -> null;
-            default -> null;
+        ItemStack headItem = switch (this.random.nextInt(2)){
+            default -> new ItemStack(Register.HAT_ITEM);
         };
-        this.equipStack(EquipmentSlot.HEAD, headItem);*/
+        this.equipStack(EquipmentSlot.HEAD, headItem);
     }
 
     protected void initGoals() {

@@ -89,7 +89,7 @@ public class ParadeSpawner implements SpecialSpawner {
             if (blockPos3 != null && this.doesNotSuffocateAt(world, blockPos3)) {
                 PresenterEntity presenterEntity = ClownRaid.PRESENTER.spawn(world, blockPos3, SpawnReason.EVENT);
                 if (presenterEntity != null) {
-                    for (int j = 0; j < 7; j++) {
+                    for (int j = 0; j < 9; j++) {
                         ParaderEntity parader = this.spawnParader(world, presenterEntity);
                         if (parader != null) {
                             parader.setDespawnDelay(DEFAULT_SPAWN_DELAY);
