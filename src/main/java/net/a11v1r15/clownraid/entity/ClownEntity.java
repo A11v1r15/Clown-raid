@@ -1,13 +1,8 @@
 package net.a11v1r15.clownraid.entity;
 
-import dev.callmeecho.bombastic.main.registry.BombasticItemRegistrar;
-import dev.doublekekse.confetti.Confetti;
-import dev.doublekekse.confetti.math.Vec3Dist;
-import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -17,30 +12,27 @@ import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
-import symbolics.division.honque.Honque;
 
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
         ItemStack headItem = switch (this.random.nextInt(4)){
-            case 0 -> new ItemStack(BombasticItemRegistrar.CLOWN_HAIR);
-            case 1 -> new ItemStack(Honque.THE_GREEN_FUNNY);
-            case 2 -> new ItemStack(Honque.THE_BLUE_FUNNY);
-            default -> new ItemStack(Honque.THE_FUNNY);
+            case 0 -> new ItemStack(ClownRaidTrades.getItem("bombastic:clown_hair"));
+            case 1 -> new ItemStack(ClownRaidTrades.getItem("honque:the_green_funny"));
+            case 2 -> new ItemStack(ClownRaidTrades.getItem("honque:the_blue_funny"));
+            default -> new ItemStack(ClownRaidTrades.getItem("honque:the_funny"));
         };
         this.equipStack(EquipmentSlot.HEAD, headItem);
         if (this.random.nextInt(4) == 0)
-            this.equipStack(EquipmentSlot.FEET, new ItemStack(BombasticItemRegistrar.CLOWN_BOOTS));
+            this.equipStack(EquipmentSlot.FEET, new ItemStack(ClownRaidTrades.getItem("bombastic:clown_boots")));
     }
 
     protected void initGoals() {
@@ -101,15 +93,6 @@ public class ClownEntity extends ParaderEntity {
             if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
             if (tradeOffer2 != null) {tradeOfferList.add(tradeOffer2);}
         }
-    }
-
-    protected void afterUsing(TradeOffer offer) {
-        if (offer.shouldRewardPlayerExperience() && this.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3Dist posDist = new Vec3Dist(this.getPos(), 1.0);
-            Vec3Dist velDist = new Vec3Dist(new Vec3d(0.0, 1.0, 0.0), 0.2);
-            serverWorld.getPlayers().forEach((player) -> ServerPlayNetworking.send(player, new ExtendedParticlePacket(posDist, velDist, offer.getMerchantExperience() * 100, true, Confetti.CONFETTI)));
-        }
-        super.afterUsing(offer);
     }
 
     protected SoundEvent getAmbientSound() {

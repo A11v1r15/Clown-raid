@@ -1,7 +1,7 @@
 package net.a11v1r15.clownraid.entity;
 
-import com.chailotl.wowozela.Main;
 import net.a11v1r15.clownraid.ClownRaid;
+import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
@@ -26,11 +26,11 @@ public class MarcherEntity extends ParaderEntity {
         ItemStack handItem;
         switch (this.random.nextInt(2)){
             case 0:
-                handItem = new ItemStack(Items.GOAT_HORN);
+                handItem = new ItemStack(ClownRaidTrades.getItem("minecraft:goat_horn"));
                 GoatHornItem.setRandomInstrumentFromTag(handItem, InstrumentTags.GOAT_HORNS, this.getWorld().getRandom());
                 break;
             default:
-                handItem = new ItemStack(Main.WOWOZELA);
+                handItem = new ItemStack(ClownRaidTrades.getItem("wowozela:wowozela"));
         }
         this.equipStack(EquipmentSlot.MAINHAND, handItem);
         this.setCurrentHand(Hand.MAIN_HAND);

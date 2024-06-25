@@ -1,14 +1,8 @@
 package net.a11v1r15.clownraid.entity;
 
-import com.bug1312.magicians_hat.Register;
-import dev.doublekekse.confetti.Confetti;
-import dev.doublekekse.confetti.math.Vec3Dist;
-import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
-import dev.enjarai.trickster.item.ModItems;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -18,12 +12,10 @@ import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
@@ -33,8 +25,8 @@ public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
         ItemStack headItem = switch (this.random.nextInt(2)){
-            case 0 -> new ItemStack(ModItems.TOP_HAT);
-            default -> new ItemStack(Register.HAT_ITEM);
+            case 0 -> new ItemStack(ClownRaidTrades.getItem("trickster:top_hat"));
+            default -> new ItemStack(ClownRaidTrades.getItem("magicians_hat:magicians_hat"));
         };
         this.equipStack(EquipmentSlot.HEAD, headItem);
     }

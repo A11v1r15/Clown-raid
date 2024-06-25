@@ -1,4 +1,4 @@
-Mod made for [Modfest 2024: Carnival](https://modfest.net/carnival)!
+[![Made for ModFest: Carnival](https://raw.githubusercontent.com/ModFest/art/v2/badge/svg/carnival/cozy.svg)](https://modfest.net/carnival)
 
 Spawns Parades in your world, they're pretty much like how Wandering Traders appear, and can have the following mobs:
 

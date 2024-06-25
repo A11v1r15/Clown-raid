@@ -1,7 +1,14 @@
 package net.a11v1r15.clownraid.entity;
 
+import dev.doublekekse.confetti.Confetti;
+import dev.doublekekse.confetti.math.Vec3Dist;
+import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.WanderingTraderEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.village.TradeOffer;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,5 +44,14 @@ public abstract class ParaderEntity extends WanderingTraderEntity {
             this.following.follower = null;
         }
         this.following = null;
+    }
+
+    protected void afterUsing(TradeOffer offer) {
+        if (offer.shouldRewardPlayerExperience() && this.getWorld() instanceof ServerWorld serverWorld) {
+            Vec3Dist posDist = new Vec3Dist(this.getPos(), 1.0);
+            Vec3Dist velDist = new Vec3Dist(new Vec3d(0.0, 1.0, 0.0), 0.2);
+            serverWorld.getPlayers().forEach((player) -> ServerPlayNetworking.send(player, new ExtendedParticlePacket(posDist, velDist, offer.getMerchantExperience() * 100, true, Confetti.CONFETTI)));
+        }
+        super.afterUsing(offer);
     }
 }
