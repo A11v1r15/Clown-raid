@@ -91,7 +91,15 @@ public class ClownEntity extends ParaderEntity {
             TradeOffer tradeOffer1 = factory1.create(this, this.random);
             TradeOffer tradeOffer2 = factory2.create(this, this.random);
             if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
-            if (tradeOffer2 != null) {tradeOfferList.add(tradeOffer2);}
+            if (tradeOffer2 != null) {
+                TradeOffer honqueTrade = new ClownRaidTrades.SellForCurrencyItemFactory(
+                        tradeOffer2.getFirstBuyItem(),
+                        getEquippedStack(EquipmentSlot.HEAD).getItem(),
+                        1, tradeOffer2.getMaxUses(), tradeOffer2.getMerchantExperience(),
+                        null, 0
+                ).create(this, this.random);
+                tradeOfferList.add(honqueTrade);
+            }
         }
     }
 
