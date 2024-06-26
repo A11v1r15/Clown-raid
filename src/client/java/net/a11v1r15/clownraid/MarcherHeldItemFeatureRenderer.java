@@ -31,7 +31,12 @@ import net.minecraft.util.math.RotationAxis;
             float deg = 90.0F;
             if (itemStack.isOf(ClownRaidTrades.getItem("wowozela:wowozela"))){
                 deg = 270.0F;
-            }
+            } else if (
+                    itemStack.isOf(ClownRaidTrades.getItem("mib:acoustic_guitar")) ||
+                    itemStack.isOf(ClownRaidTrades.getItem("mib:harpsichord")) ||
+                    itemStack.isOf(ClownRaidTrades.getItem("mib:keyboard")) ||
+                    itemStack.isOf(ClownRaidTrades.getItem("mib:violin")))
+                deg = 180.0F;
             matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(deg));
             this.heldItemRenderer.renderItem(livingEntity, itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, i);
             matrixStack.pop();

@@ -23,15 +23,21 @@ import net.minecraft.world.event.GameEvent;
 public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack handItem;
-        switch (this.random.nextInt(2)){
-            case 0:
-                handItem = new ItemStack(ClownRaidTrades.getItem("minecraft:goat_horn"));
-                GoatHornItem.setRandomInstrumentFromTag(handItem, InstrumentTags.GOAT_HORNS, this.getWorld().getRandom());
-                break;
-            default:
-                handItem = new ItemStack(ClownRaidTrades.getItem("wowozela:wowozela"));
-        }
+        int chooseInt = this.random.nextInt(10);
+        ItemStack handItem = new ItemStack(ClownRaidTrades.getItem(switch (chooseInt){
+            case 0 -> "minecraft:goat_horn";
+            case 1 -> "mib:acoustic_guitar";
+            case 2 -> "mib:copper_goat_horn";
+            case 3 -> "mib:fantasy_trumpet";
+            case 4 -> "mib:flute";
+            case 5 -> "mib:harpsichord";
+            case 6 -> "mib:keyboard";
+            case 7 -> "mib:saxophone";
+            case 8 -> "mib:violin";
+            default -> "wowozela:wowozela";
+        }));
+        if (chooseInt == 0)
+            GoatHornItem.setRandomInstrumentFromTag(handItem, InstrumentTags.GOAT_HORNS, this.getWorld().getRandom());
         this.equipStack(EquipmentSlot.MAINHAND, handItem);
         this.setCurrentHand(Hand.MAIN_HAND);
     }

@@ -45,6 +45,7 @@
 		"wowozela": ">=1.0.0",
 		"ducktor": ">=1.0.0",
 		"honque": ">=2.2",
+		"mib": ">=0.1.1"
 	},
 	"accessWidener" : "clown-raid.accesswidener",
 	"suggests": {
