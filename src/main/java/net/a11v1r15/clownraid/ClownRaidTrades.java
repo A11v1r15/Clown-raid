@@ -43,11 +43,11 @@ public class ClownRaidTrades {
             2, //Tokens
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:emerald"),  6,  16,  8,  6),
-                        new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:emerald"), 12,  64,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:emerald"), 12,  32,  4, 12),
                         new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:emerald"), 24,  64,  2, 24),
                         new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:emerald"), 48, 128,  1, 48),
                         new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:diamond"),  3,  16,  8,  6),
-                        new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:diamond"),  6,  64,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:diamond"),  6,  32,  4, 12),
                         new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:diamond"), 12,  64,  2, 24),
                         new SellForCurrencyItemFactory(getItem("terrifictickets:token"), getItem("minecraft:diamond"), 24, 128,  1, 48),
                 },
@@ -117,7 +117,6 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(getItem("ducktor:scented_candle"),  7,  7,  7,  1),
                         new SellForCurrencyItemFactory(getItem("ducktor:lozenge"),  5,  7,  7,  1),
                         new SellForCurrencyItemFactory(getItem("ducktor:scented_candle"),  7,  7,  7,  1),
-                        new SellForCurrencyItemFactory(getItem("ducktor:warding_candle"), getItem("terrifictickets:token"),  7,  7,  7,  1),
                         new SellForCurrencyItemFactory(getItem("minecraft:potion"),  3,  1,  7,  1, new Pair<>(getComponentType("minecraft:potion_contents"), getPotion("ducktor:magnificent"))),
                         new SellForCurrencyItemFactory(getItem("minecraft:potion"),  6,  1,  7,  1, new Pair<>(getComponentType("minecraft:potion_contents"), getPotion("ducktor:rejuvenation"))),
                         new SellForCurrencyItemFactory(getItem("minecraft:potion"),  12,  1,  7,  1, new Pair<>(getComponentType("minecraft:potion_contents"), getPotion("ducktor:long_rejuvenation"))),
