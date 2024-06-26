@@ -24,10 +24,10 @@ import net.minecraft.world.World;
 public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = switch (this.random.nextInt(2)){
-            case 0 -> new ItemStack(ClownRaidTrades.getItem("trickster:top_hat"));
-            default -> new ItemStack(ClownRaidTrades.getItem("magicians_hat:magicians_hat"));
-        };
+        ItemStack headItem = new ItemStack(ClownRaidTrades.getItem(switch (this.random.nextInt(2)){
+            case 0 -> "trickster:top_hat";
+            default -> "magicians_hat:magicians_hat";
+        }));
         this.equipStack(EquipmentSlot.HEAD, headItem);
     }
 

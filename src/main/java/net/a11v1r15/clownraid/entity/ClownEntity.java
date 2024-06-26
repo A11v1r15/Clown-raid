@@ -24,15 +24,15 @@ import net.minecraft.world.World;
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = switch (this.random.nextInt(4)){
-            case 0 -> new ItemStack(ClownRaidTrades.getItem("bombastic:clown_hair"));
-            case 1 -> new ItemStack(ClownRaidTrades.getItem("honque:the_green_funny"));
-            case 2 -> new ItemStack(ClownRaidTrades.getItem("honque:the_blue_funny"));
-            default -> new ItemStack(ClownRaidTrades.getItem("honque:the_funny"));
-        };
+        ItemStack headItem = new ItemStack(ClownRaidTrades.getItem(switch (this.random.nextInt(5)){
+            case 0 -> "honque:the_orange_funny";
+            case 1 -> "honque:the_green_funny";
+            case 2 -> "honque:the_blue_funny";
+            case 3 -> "honque:the_gay_funny";
+            default -> "honque:the_funny";
+        }));
         this.equipStack(EquipmentSlot.HEAD, headItem);
-        if (this.random.nextInt(4) == 0)
-            this.equipStack(EquipmentSlot.FEET, new ItemStack(ClownRaidTrades.getItem("bombastic:clown_boots")));
+        this.equipStack(EquipmentSlot.FEET, new ItemStack(ClownRaidTrades.getItem("bombastic:clown_boots")));
     }
 
     protected void initGoals() {
