@@ -5,6 +5,8 @@ import net.a11v1r15.clownraid.entity.MagicianEntity;
 import net.a11v1r15.clownraid.entity.MarcherEntity;
 import net.a11v1r15.clownraid.entity.SellerEntity;
 import net.a11v1r15.clownraid.entity.ClownEntity;
+import net.a11v1r15.clownraid.util.DispensableSpawnEggItem;
+import net.a11v1r15.clownraid.util.ServerWorldSpawners;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
@@ -50,11 +52,11 @@ public class ClownRaid implements ModInitializer {
 			ClownRaid.id("clown"),
 			EntityType.Builder.create(ClownEntity::new, SpawnGroup.CREATURE).dimensions(0.6F, 1.95F).eyeHeight(1.62F).maxTrackingRange(10).build()
 	);
-	public static final Item PRESENTER_SPAWN_EGG = new SpawnEggItem(PRESENTER, 0xE14D2F, 0x000000, new Item.Settings());
-	public static final Item MAGICIAN_SPAWN_EGG = new SpawnEggItem(MAGICIAN, 0xE68A25, 0xE14D2F, new Item.Settings());
-	public static final Item MARCHER_SPAWN_EGG = new SpawnEggItem(MARCHER, 0xE14D2F, 0xEBBD33, new Item.Settings());
-	public static final Item SELLER_SPAWN_EGG = new SpawnEggItem(SELLER, 0xE2E1DC, 0xE14D2F, new Item.Settings());
-	public static final Item CLOWN_SPAWN_EGG = new SpawnEggItem(CLOWN, 0xEBBD33, 0xF03199, new Item.Settings());
+	public static final Item PRESENTER_SPAWN_EGG = new DispensableSpawnEggItem(PRESENTER, 0xE14D2F, 0x000000, new Item.Settings());
+	public static final Item MAGICIAN_SPAWN_EGG = new DispensableSpawnEggItem(MAGICIAN, 0xE68A25, 0xE14D2F, new Item.Settings());
+	public static final Item MARCHER_SPAWN_EGG = new DispensableSpawnEggItem(MARCHER, 0xE14D2F, 0xEBBD33, new Item.Settings());
+	public static final Item SELLER_SPAWN_EGG = new DispensableSpawnEggItem(SELLER, 0xE2E1DC, 0xE14D2F, new Item.Settings());
+	public static final Item CLOWN_SPAWN_EGG = new DispensableSpawnEggItem(CLOWN, 0xEBBD33, 0xF03199, new Item.Settings());
 	public static final Identifier ENTITY_PRESENTER_DRINK_POTION_ID = ClownRaid.id("entity.presenter.drink_potion");
 	public static final Identifier ENTITY_PRESENTER_DISAPPEARED_ID = ClownRaid.id("entity.presenter.disappeared");
 	public static final Identifier ENTITY_PRESENTER_DRINK_MILK_ID = ClownRaid.id("entity.presenter.drink_milk");
@@ -226,7 +228,7 @@ public class ClownRaid implements ModInitializer {
 
 		ServerWorldEvents.LOAD.register(((server, world) -> {
 			if (world.isClient()) return;
-			ServerWorldSpawnersUtil.register(world, new ParadeSpawner());
+			ServerWorldSpawners.register(world, new ParadeSpawner());
 		}));
 		LOGGER.info("Coming to a village near you!");
 	}
