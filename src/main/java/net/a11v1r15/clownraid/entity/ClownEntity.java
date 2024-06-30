@@ -3,6 +3,7 @@ package net.a11v1r15.clownraid.entity;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
+import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -24,7 +25,7 @@ import net.minecraft.world.World;
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = new ItemStack(ClownRaidTrades.getItem(switch (this.random.nextInt(5)){
+        ItemStack headItem = new ItemStack(RegistryHelper.getItem(switch (this.random.nextInt(5)){
             case 0 -> "honque:the_orange_funny";
             case 1 -> "honque:the_green_funny";
             case 2 -> "honque:the_blue_funny";
@@ -32,7 +33,7 @@ public class ClownEntity extends ParaderEntity {
             default -> "honque:the_funny";
         }));
         this.equipStack(EquipmentSlot.HEAD, headItem);
-        this.equipStack(EquipmentSlot.FEET, new ItemStack(ClownRaidTrades.getItem("bombastic:clown_boots")));
+        this.equipStack(EquipmentSlot.FEET, new ItemStack(RegistryHelper.getItem("bombastic:clown_boots")));
     }
 
     protected void initGoals() {
@@ -76,7 +77,7 @@ public class ClownEntity extends ParaderEntity {
             return super.interactMob(player, hand);
         }
     }
-
+/*
     protected void fillRecipes() {
         TradeOffers.Factory[] factories =  ClownRaidTrades.CLOWN_TRADES.get(1);
         TradeOffers.Factory[] factories2 = ClownRaidTrades.CLOWN_TRADES.get(2);
@@ -102,7 +103,7 @@ public class ClownEntity extends ParaderEntity {
             }
         }
     }
-
+*/
     protected SoundEvent getAmbientSound() {
         return this.hasCustomer() ? ClownRaid.ENTITY_CLOWN_TRADE : ClownRaid.ENTITY_CLOWN_AMBIENT;
     }

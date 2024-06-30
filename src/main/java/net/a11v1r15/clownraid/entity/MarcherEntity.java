@@ -3,6 +3,7 @@ package net.a11v1r15.clownraid.entity;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
+import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,7 +25,7 @@ public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
         int chooseInt = this.random.nextInt(13);
-        ItemStack handItem = new ItemStack(ClownRaidTrades.getItem(switch (chooseInt){
+        ItemStack handItem = new ItemStack(RegistryHelper.getItem(switch (chooseInt){
             case 0 -> "minecraft:goat_horn";
             case 1 -> "mib:acoustic_guitar";
             case 2 -> "mib:copper_goat_horn";

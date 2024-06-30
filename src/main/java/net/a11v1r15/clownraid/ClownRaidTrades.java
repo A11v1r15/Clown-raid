@@ -3,6 +3,7 @@ package net.a11v1r15.clownraid;
 import com.google.common.collect.ImmutableMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.a11v1r15.clownraid.util.ClownRaidTrading;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.type.SuspiciousStewEffectsComponent;
 import net.minecraft.enchantment.Enchantment;
@@ -24,11 +25,26 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.TradedItem;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ClownRaidTrades {
-    public static final Int2ObjectMap<TradeOffers.Factory[]> PRESENTER_TRADES =
-        copyToFastUtilMap(ImmutableMap.of(
+    public static final HashMap<String, TradeOffers.Factory[]> PRESENTER_TRADES =
+            new ClownRaidTrading.Builder()
+                    .addPool("Tickets")
+                    .sell( 32, "terrifictickets:ticket").inExchangeFor( 6, "minecraft:emerald").times(8).rewarding( 6)
+                    .sell( 64, "terrifictickets:ticket").inExchangeFor(12, "minecraft:emerald").times(4).rewarding(12)
+                    .sell(128, "terrifictickets:ticket").inExchangeFor(24, "minecraft:emerald").times(2).rewarding(24)
+                    .sell(256, "terrifictickets:ticket").inExchangeFor(48, "minecraft:emerald").times(1).rewarding(48)
+                    .addPool("Tokens")
+                    .sell( 16, "terrifictickets:token").inExchangeFor( 6, "minecraft:emerald").times(8).rewarding( 6)
+                    .sell( 32, "terrifictickets:token").inExchangeFor(12, "minecraft:emerald").times(4).rewarding(12)
+                    .sell( 64, "terrifictickets:token").inExchangeFor(24, "minecraft:emerald").times(2).rewarding(24)
+                    .sell(128, "terrifictickets:token").inExchangeFor(48, "minecraft:emerald").times(1).rewarding(48)
+                    .addPool("Passcard")
+                    .sell( 1, "terrifictickets:passcard").inExchangeFor(32, "minecraft:emerald").times(1).rewarding(32)
+                    .build();
+        /*copyToFastUtilMap(ImmutableMap.of(
             1, //Tickets
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(getItem("terrifictickets:ticket"), getItem("minecraft:emerald"),  6,  32,  8,  6),
@@ -182,75 +198,5 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(getItem("honque:the_funny"), getItem("terrifictickets:token"), 16, 1, 1, 320),
                 }
             )
-        );
-
-    public static Item getItem (String identifier){
-        return Registries.ITEM.get(Identifier.of(identifier));
-    }
-
-    public static ComponentType<?> getComponentType(String identifier){
-        return Registries.DATA_COMPONENT_TYPE.get(Identifier.of(identifier));
-    }
-
-    public static Potion getPotion (String identifier){
-        return Registries.POTION.get(Identifier.of(identifier));
-    }
-
-    private static Int2ObjectMap<TradeOffers.Factory[]> copyToFastUtilMap(ImmutableMap<Integer, TradeOffers.Factory[]> map) {
-        return new Int2ObjectOpenHashMap(map);
-    }
-
-    public static class SellForCurrencyItemFactory implements TradeOffers.Factory {
-        private final TradedItem currency;
-        private final Item stack;
-        private final RegistryKey<Enchantment> enchantment;
-        private final int enchantmentLevel;
-        private final int maxUses;
-        private final int experience;
-        private final int count;
-        private final float multiplier;
-        private final Pair<ComponentType, Object>[] components;
-
-        public SellForCurrencyItemFactory(ItemConvertible item, int price, int count, int maxUses, int experience, Pair<ComponentType, Object>... components) {
-            this(new TradedItem(getItem("terrifictickets:ticket").asItem(), price), item.asItem(), count, maxUses, experience, null, 0, components);
-        }
-
-        public SellForCurrencyItemFactory(ItemConvertible item, ItemConvertible currency, int price, int count, int maxUses, int experience, Pair<ComponentType, Object>... components) {
-            this(new TradedItem(currency.asItem(), price), item.asItem(), count, maxUses, experience, null, 0, components);
-        }
-
-        public SellForCurrencyItemFactory(ItemConvertible item, RegistryKey<Enchantment> enchantment, int enchantmentLevel, int price, int count, int maxUses, int experience, Pair<ComponentType, Object>... components) {
-            this(new TradedItem(getItem("terrifictickets:ticket").asItem(), price), item.asItem(), count, maxUses, experience, enchantment, enchantmentLevel, components);
-        }
-
-        public SellForCurrencyItemFactory(ItemConvertible item, ItemConvertible currency, RegistryKey<Enchantment> enchantment, int enchantmentLevel, int price, int count, int maxUses, int experience, Pair<ComponentType, Object>... components) {
-            this(new TradedItem(currency.asItem(), price), item.asItem(), count, maxUses, experience, enchantment, enchantmentLevel, components);
-        }
-
-        public SellForCurrencyItemFactory(TradedItem currency, Item stack, int count, int maxUses, int experience, RegistryKey<Enchantment> enchantment, int enchantmentLevel, Pair<ComponentType, Object>... components) {
-            this.stack = stack;
-            this.enchantment = enchantment;
-            this.enchantmentLevel = enchantmentLevel;
-            this.currency = currency;
-            this.maxUses = maxUses;
-            this.experience = experience;
-            this.count = count;
-            this.multiplier = 0.05F;
-            this.components = components;
-        }
-
-        public TradeOffer create(Entity entity, Random random) {
-            ItemStack itemStack =  new ItemStack(stack, this.count);
-            if(enchantment != null) {
-                RegistryEntry<Enchantment> enchantmentEntry = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(enchantment.getValue()).get();
-                itemStack.addEnchantment(enchantmentEntry, this.enchantmentLevel);
-            }
-            for (Pair<ComponentType, Object> component : this.components){
-                ComponentType componentType = component.getLeft();
-                Object value = component.getRight();
-                itemStack.set(componentType, value);
-            }
-            return new TradeOffer(this.currency, itemStack, this.maxUses, this.experience, this.multiplier);
-        }
-    }
+        );*/
 }

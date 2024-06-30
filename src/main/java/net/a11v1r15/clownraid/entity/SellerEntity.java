@@ -64,7 +64,7 @@ public class SellerEntity extends ParaderEntity {
             return super.interactMob(player, hand);
         }
     }
-
+/*
     protected void fillRecipes() {
         TradeOffers.Factory[] factories = switch (this.random.nextInt(4)) {
             case 0 -> ClownRaidTrades.SELLER_TRADES.get(2);
@@ -77,7 +77,7 @@ public class SellerEntity extends ParaderEntity {
             this.fillRecipesFromPool(tradeOfferList, factories, 4);
         }
     }
-
+ */
     protected SoundEvent getAmbientSound() {
         return this.hasCustomer() ? ClownRaid.ENTITY_SELLER_TRADE : ClownRaid.ENTITY_SELLER_AMBIENT;
     }

@@ -1,5 +1,6 @@
 package net.a11v1r15.clownraid;
 
+import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -29,16 +30,16 @@ import net.minecraft.util.math.RotationAxis;
             matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180.0F));
             ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.MAINHAND);
             float deg = 90.0F;
-            if (itemStack.isOf(ClownRaidTrades.getItem("wowozela:wowozela"))){
+            if (itemStack.isOf(RegistryHelper.getItem("wowozela:wowozela"))){
                 deg = 270.0F;
             } else if (
-                    itemStack.isOf(ClownRaidTrades.getItem("mib:acoustic_guitar")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("mib:harpsichord")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("mib:keyboard")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("mib:violin")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("powerchord:pan_flute")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("powerchord:harmonica")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("powerchord:wawa")))
+                    itemStack.isOf(RegistryHelper.getItem("mib:acoustic_guitar")) ||
+                    itemStack.isOf(RegistryHelper.getItem("mib:harpsichord")) ||
+                    itemStack.isOf(RegistryHelper.getItem("mib:keyboard")) ||
+                    itemStack.isOf(RegistryHelper.getItem("mib:violin")) ||
+                    itemStack.isOf(RegistryHelper.getItem("powerchord:pan_flute")) ||
+                    itemStack.isOf(RegistryHelper.getItem("powerchord:harmonica")) ||
+                    itemStack.isOf(RegistryHelper.getItem("powerchord:wawa")))
                 deg = 180.0F;
             matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(deg));
             this.heldItemRenderer.renderItem(livingEntity, itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, i);

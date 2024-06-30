@@ -69,9 +69,9 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories1 = ClownRaidTrades.PRESENTER_TRADES.get(1);
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get(2);
-        TradeOffers.Factory[] factories3 = ClownRaidTrades.PRESENTER_TRADES.get(3);
+        TradeOffers.Factory[] factories1 = ClownRaidTrades.PRESENTER_TRADES.get("Tickets");
+        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get("Tokens");
+        TradeOffers.Factory[] factories3 = ClownRaidTrades.PRESENTER_TRADES.get("Passcard");
         if (factories1 != null && factories2 != null && factories3 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
             int i = this.random.nextInt(factories1.length);

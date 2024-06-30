@@ -3,6 +3,7 @@ package net.a11v1r15.clownraid.entity;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
+import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -24,7 +25,7 @@ import net.minecraft.world.World;
 public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = new ItemStack(ClownRaidTrades.getItem(switch (this.random.nextInt(2)){
+        ItemStack headItem = new ItemStack(RegistryHelper.getItem(switch (this.random.nextInt(2)){
             case 0 -> "trickster:top_hat";
             default -> "magicians_hat:magicians_hat";
         }));
@@ -72,7 +73,7 @@ public class MagicianEntity extends ParaderEntity {
             return super.interactMob(player, hand);
         }
     }
-
+/*
     protected void fillRecipes() {
         TradeOffers.Factory[] factories =  ClownRaidTrades.MAGICIAN_TRADES.get(1);
         TradeOffers.Factory[] factories2 = ClownRaidTrades.MAGICIAN_TRADES.get(2);
@@ -90,7 +91,7 @@ public class MagicianEntity extends ParaderEntity {
             if (tradeOffer2 != null) {tradeOfferList.add(tradeOffer2);}
         }
     }
-
+*/
     protected SoundEvent getAmbientSound() {
         return this.hasCustomer() ? ClownRaid.ENTITY_MAGICIAN_TRADE : ClownRaid.ENTITY_MAGICIAN_AMBIENT;
     }
