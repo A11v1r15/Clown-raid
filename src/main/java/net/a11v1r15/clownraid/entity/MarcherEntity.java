@@ -23,7 +23,7 @@ import net.minecraft.world.event.GameEvent;
 public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        int chooseInt = this.random.nextInt(10);
+        int chooseInt = this.random.nextInt(13);
         ItemStack handItem = new ItemStack(ClownRaidTrades.getItem(switch (chooseInt){
             case 0 -> "minecraft:goat_horn";
             case 1 -> "mib:acoustic_guitar";
@@ -34,6 +34,9 @@ public class MarcherEntity extends ParaderEntity {
             case 6 -> "mib:keyboard";
             case 7 -> "mib:saxophone";
             case 8 -> "mib:violin";
+            case 9 -> "powerchord:pan_flute";
+            case 10 -> "powerchord:harmonica";
+            case 11 -> "powerchord:wawa";
             default -> "wowozela:wowozela";
         }));
         if (chooseInt == 0)

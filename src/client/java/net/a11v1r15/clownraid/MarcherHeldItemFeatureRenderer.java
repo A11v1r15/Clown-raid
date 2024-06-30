@@ -35,7 +35,10 @@ import net.minecraft.util.math.RotationAxis;
                     itemStack.isOf(ClownRaidTrades.getItem("mib:acoustic_guitar")) ||
                     itemStack.isOf(ClownRaidTrades.getItem("mib:harpsichord")) ||
                     itemStack.isOf(ClownRaidTrades.getItem("mib:keyboard")) ||
-                    itemStack.isOf(ClownRaidTrades.getItem("mib:violin")))
+                    itemStack.isOf(ClownRaidTrades.getItem("mib:violin")) ||
+                    itemStack.isOf(ClownRaidTrades.getItem("powerchord:pan_flute")) ||
+                    itemStack.isOf(ClownRaidTrades.getItem("powerchord:harmonica")) ||
+                    itemStack.isOf(ClownRaidTrades.getItem("powerchord:wawa")))
                 deg = 180.0F;
             matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(deg));
             this.heldItemRenderer.renderItem(livingEntity, itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, i);

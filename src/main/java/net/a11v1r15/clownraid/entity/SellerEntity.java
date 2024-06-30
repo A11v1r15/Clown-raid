@@ -66,9 +66,10 @@ public class SellerEntity extends ParaderEntity {
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories = switch (this.random.nextInt(3)) {
+        TradeOffers.Factory[] factories = switch (this.random.nextInt(4)) {
             case 0 -> ClownRaidTrades.SELLER_TRADES.get(2);
             case 1 -> ClownRaidTrades.SELLER_TRADES.get(3);
+            case 2 -> ClownRaidTrades.SELLER_TRADES.get(4);
             default -> ClownRaidTrades.SELLER_TRADES.get(1);
         };
         if (factories != null) {

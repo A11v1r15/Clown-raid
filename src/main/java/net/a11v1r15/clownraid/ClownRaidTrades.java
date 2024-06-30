@@ -86,15 +86,36 @@ public class ClownRaidTrades {
         copyToFastUtilMap(ImmutableMap.of(
             1, //Food Items
                 new TradeOffers.Factory[]{
-                        new SellForCurrencyItemFactory(getItem("minecraft:golden_apple"), getItem("terrifictickets:token"),  16,  1,  3,  1),
-                        new SellForCurrencyItemFactory(getItem("minecraft:golden_carrot"),  6,  5,  4, 1),
-                        new SellForCurrencyItemFactory(getItem("minecraft:pumpkin_pie"), 12, 3,  2, 1),
-                        new SellForCurrencyItemFactory(getItem("minecraft:cookie"), 4, 16,  16, 1),
-                        new SellForCurrencyItemFactory(getItem("minecraft:baked_potato"), 4, 16,  16, 1),
-                        new SellForCurrencyItemFactory(getItem("minecraft:milk_bucket"), 10, 1,  16, 1),
-                        new SellForCurrencyItemFactory(getItem("ducktor:lozenge"),  5,  7,  7,  1),
+                        new SellForCurrencyItemFactory(getItem("carnivalconfections:candied_apple"), getItem("terrifictickets:token"),  12,  1,  3,  12),
+                        new SellForCurrencyItemFactory(getItem("carnivalconfections:popcorn"),  16,  1,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("carnival-foods:hotdog_in_bun"),  5,  6,  4, 8),
+                        new SellForCurrencyItemFactory(getItem("carnival-foods:vegan_hotdog"),  15,  6,  4, 32),
+                        new SellForCurrencyItemFactory(getItem("extravaganza:hot_dog"), getItem("extravaganza:common_festive_coin"),  5,  6,  4, 8),
+                        new SellForCurrencyItemFactory(getItem("extravaganza:hot_dog_with_mayonnaise"), getItem("extravaganza:common_festive_coin"),  15,  6,  4, 32),
+                        new SellForCurrencyItemFactory(getItem("extravaganza:popcorn"), getItem("extravaganza:uncommon_festive_coin"),  3,  1,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("sinister-circus:churros"),  12,  16,  3,  12),
+                        new SellForCurrencyItemFactory(getItem("sinister-circus:sugar_frosted_churros"),  18,  16,  3,  24),
+                        new SellForCurrencyItemFactory(getItem("sinister-circus:choco_frosted_churros"),  18,  16,  3,  24),
+                        new SellForCurrencyItemFactory(getItem("duck:popcorn"),  3,  5,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("duck:duck_pop"),  4,  5,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("duck:duck_cornduck"),  8,  5,  4, 12),
+                        new SellForCurrencyItemFactory(getItem("minecraft:milk_bucket"), 10, 1,  16, 13),
+                        new SellForCurrencyItemFactory(getItem("minecraft:wooden_sword"), 3, 1,  16, 10),
                 },
-            2, //Flowers
+            2, //Candy Items
+                new TradeOffers.Factory[]{
+                        new SellForCurrencyItemFactory(getItem("carnival-foods:cotton_candy"), getItem("terrifictickets:token"),  12,  1,  3,  12),
+                        new SellForCurrencyItemFactory(getItem("sinister-circus:cotton_candy"), getItem("terrifictickets:token"),  12,  1,  3,  12),
+                        new SellForCurrencyItemFactory(getItem("carnivalconfections:strong_candy"),  12,  5,  4, 6),
+                        new SellForCurrencyItemFactory(getItem("carnivalconfections:energetic_candy"),  12,  5,  4, 6),
+                        new SellForCurrencyItemFactory(getItem("carnivalconfections:special_candy"),  12,  5,  4, 6),
+                        new SellForCurrencyItemFactory(getItem("extravaganza:golden_candy_cane"), getItem("extravaganza:common_festive_coin"),  3,  4,  4, 8),
+                        new SellForCurrencyItemFactory(getItem("extravaganza:green_candy_cane"), getItem("extravaganza:common_festive_coin"),  3,  4,  4, 8),
+                        new SellForCurrencyItemFactory(getItem("extravaganza:red_candy_cane"), getItem("extravaganza:common_festive_coin"),  3,  4,  4, 8),
+                        new SellForCurrencyItemFactory(getItem("ducktor:lozenge"),  5,  7,  7,  16),
+                        new SellForCurrencyItemFactory(getItem("minecraft:cookie"), 4, 16,  16, 6),
+                },
+            3, //Flowers
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(getItem("minecraft:allium"),  1,  7,  7,  1),
                         new SellForCurrencyItemFactory(getItem("minecraft:azure_bluet"),  1,  7,  7,  1),
@@ -109,7 +130,7 @@ public class ClownRaidTrades {
                         new SellForCurrencyItemFactory(getItem("minecraft:red_tulip"),  1,  7,  7,  1),
                         new SellForCurrencyItemFactory(getItem("minecraft:white_tulip"),  1,  7,  7,  1),
                 },
-            3, //Ductor
+            4, //Ductor
                 new TradeOffers.Factory[]{
                         new SellForCurrencyItemFactory(getItem("minecraft:warped_fungus"),  3,  7,  7,  1),
                         new SellForCurrencyItemFactory(getItem("minecraft:sweet_berries"),  3,  7,  7,  1),
