@@ -3,7 +3,6 @@ package net.a11v1r15.clownraid.entity;
 import net.a11v1r15.clownraid.ClownRaid;
 import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
-import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -25,11 +24,6 @@ import net.minecraft.world.World;
 public class MagicianEntity extends ParaderEntity {
     public MagicianEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        ItemStack headItem = new ItemStack(RegistryHelper.getItem(switch (this.random.nextInt(2)){
-            case 0 -> "trickster:top_hat";
-            default -> "magicians_hat:magicians_hat";
-        }));
-        this.equipStack(EquipmentSlot.HEAD, headItem);
     }
 
     protected void initGoals() {
@@ -73,11 +67,11 @@ public class MagicianEntity extends ParaderEntity {
             return super.interactMob(player, hand);
         }
     }
-/*
+
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories =  ClownRaidTrades.MAGICIAN_TRADES.get(1);
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.MAGICIAN_TRADES.get(2);
-        TradeOffers.Factory[] factories3 = ClownRaidTrades.MAGICIAN_TRADES.get(3);
+        TradeOffers.Factory[] factories =  ClownRaidTrades.MAGICIAN_TRADES.get("Common");
+        TradeOffers.Factory[] factories2 = ClownRaidTrades.MAGICIAN_TRADES.get("Premium");
+        TradeOffers.Factory[] factories3 = ClownRaidTrades.MAGICIAN_TRADES.get("Hat");
         if (factories != null && factories2 != null && factories3 != null) {
             TradeOfferList tradeOfferList = this.getOffers();
             this.fillRecipesFromPool(tradeOfferList, factories, 3);
@@ -88,10 +82,13 @@ public class MagicianEntity extends ParaderEntity {
             TradeOffer tradeOffer1 = factory1.create(this, this.random);
             TradeOffer tradeOffer2 = factory2.create(this, this.random);
             if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
-            if (tradeOffer2 != null) {tradeOfferList.add(tradeOffer2);}
+            if (tradeOffer2 != null) {
+                tradeOfferList.add(tradeOffer2);
+                this.equipStack(EquipmentSlot.HEAD, tradeOffer2.copySellItem());
+            }
         }
     }
-*/
+
     protected SoundEvent getAmbientSound() {
         return this.hasCustomer() ? ClownRaid.ENTITY_MAGICIAN_TRADE : ClownRaid.ENTITY_MAGICIAN_AMBIENT;
     }

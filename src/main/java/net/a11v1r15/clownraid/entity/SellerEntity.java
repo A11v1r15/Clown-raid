@@ -20,6 +20,8 @@ import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
+
 public class SellerEntity extends ParaderEntity {
     public SellerEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
@@ -64,20 +66,19 @@ public class SellerEntity extends ParaderEntity {
             return super.interactMob(player, hand);
         }
     }
-/*
+
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories = switch (this.random.nextInt(4)) {
-            case 0 -> ClownRaidTrades.SELLER_TRADES.get(2);
-            case 1 -> ClownRaidTrades.SELLER_TRADES.get(3);
-            case 2 -> ClownRaidTrades.SELLER_TRADES.get(4);
-            default -> ClownRaidTrades.SELLER_TRADES.get(1);
-        };
+        String[] keySet = new String[ClownRaidTrades.SELLER_TRADES.keySet().size()];
+        ClownRaidTrades.SELLER_TRADES.keySet().toArray(keySet);
+        TradeOffers.Factory[] factories =
+                ClownRaidTrades.SELLER_TRADES.get(
+                        keySet[this.random.nextInt(keySet.length)]);
         if (factories != null) {
             TradeOfferList tradeOfferList = this.getOffers();
             this.fillRecipesFromPool(tradeOfferList, factories, 4);
         }
     }
- */
+
     protected SoundEvent getAmbientSound() {
         return this.hasCustomer() ? ClownRaid.ENTITY_SELLER_TRADE : ClownRaid.ENTITY_SELLER_AMBIENT;
     }

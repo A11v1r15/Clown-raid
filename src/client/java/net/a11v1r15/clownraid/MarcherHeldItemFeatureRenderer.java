@@ -26,10 +26,10 @@ import net.minecraft.util.math.RotationAxis;
 
         public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l) {
             matrixStack.push();
-            matrixStack.translate(0.0F, 0.3F, -0.5F);
-            matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180.0F));
             ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.MAINHAND);
             float deg = 90.0F;
+            float wy = 0.3F;
+            float zed = -0.5F;
             if (itemStack.isOf(RegistryHelper.getItem("wowozela:wowozela"))){
                 deg = 270.0F;
             } else if (
@@ -39,8 +39,24 @@ import net.minecraft.util.math.RotationAxis;
                     itemStack.isOf(RegistryHelper.getItem("mib:violin")) ||
                     itemStack.isOf(RegistryHelper.getItem("powerchord:pan_flute")) ||
                     itemStack.isOf(RegistryHelper.getItem("powerchord:harmonica")) ||
-                    itemStack.isOf(RegistryHelper.getItem("powerchord:wawa")))
+                    itemStack.isOf(RegistryHelper.getItem("powerchord:wawa"))){
                 deg = 180.0F;
+                zed = -0.4F;
+                if (itemStack.isOf(RegistryHelper.getItem("mib:acoustic_guitar")))
+                    wy = 0.7F;
+                if (itemStack.isOf(RegistryHelper.getItem("mib:harpsichord")) ||
+                    itemStack.isOf(RegistryHelper.getItem("mib:violin")) ||
+                    itemStack.isOf(RegistryHelper.getItem("powerchord:wawa")))
+                    wy = 0.5F;
+                if (itemStack.isOf(RegistryHelper.getItem("powerchord:pan_flute")) ||
+                        itemStack.isOf(RegistryHelper.getItem("powerchord:harmonica")))
+                    wy = 0.2F;
+            } else if (itemStack.isOf(RegistryHelper.getItem("mib:flute"))){
+                wy = 0.1F;
+                zed = -0.4F;
+            }
+            matrixStack.translate(0.0F, wy, zed);
+            matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180.0F));
             matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(deg));
             this.heldItemRenderer.renderItem(livingEntity, itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, i);
             matrixStack.pop();

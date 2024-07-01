@@ -6,9 +6,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.village.TradeOffer;
@@ -48,6 +48,28 @@ public class ClownRaidTrading {
             return this;
         }
 
+        public Builder sell(String item){
+            return sell(1, item);
+        }
+
+        public Builder sellIfModIsPresent(int count, String item, String modID){
+            if(FabricLoader.getInstance().isModLoaded(item.split(":")[0]) &&
+                    FabricLoader.getInstance().isModLoaded(modID)){
+                lastFactory = new OpenFactory();
+                output.get(lastTag).add(lastFactory);
+                lastFactory.stack = RegistryHelper.getItem(item);
+                lastFactory.count = count;
+                validTrade = true;
+            } else {
+                validTrade = false;
+            }
+            return this;
+        }
+
+        public Builder sellIfModIsPresent(String item, String modID){
+            return sellIfModIsPresent(1, item, modID);
+        }
+
         public Builder inExchangeFor(int price, String... items){
             if (validTrade){
                 for (String item : items){
@@ -61,6 +83,13 @@ public class ClownRaidTrading {
             return this;
         }
 
+        public Builder inExchangeForDefault(int price){
+            if (validTrade){
+                lastFactory.price = price;
+            }
+            return this;
+        }
+
         public Builder times(int maxUses){
             if (validTrade){
                 lastFactory.maxUses = maxUses;
@@ -68,12 +97,16 @@ public class ClownRaidTrading {
             return this;
         }
 
-        public Builder enchantedWith(RegistryKey<Enchantment> enchant, int level){
+        public Builder enchantedWith(String enchant, int level){
             if (validTrade){
                 lastFactory.enchantment = enchant;
                 lastFactory.enchantmentLevel = level;
             }
             return this;
+        }
+
+        public Builder enchantedWith(String enchant){
+            return enchantedWith(enchant, 1);
         }
 
         public Builder rewarding(int xp){
@@ -83,9 +116,9 @@ public class ClownRaidTrading {
             return this;
         }
 
-        public Builder ifModIsPresent(String modID){
-            if(!FabricLoader.getInstance().isModLoaded(modID)){
-                validTrade = false;
+        public Builder withComponents(Pair<ComponentType, Object>... components){
+            if (validTrade){
+                lastFactory.components = components;
             }
             return this;
         }
@@ -93,36 +126,33 @@ public class ClownRaidTrading {
         public HashMap<String, TradeOffers.Factory[]> build() {
             HashMap<String, TradeOffers.Factory[]> result = new HashMap<>();
             for (String key : output.keySet()){
-                ArrayList<TradeOffers.Factory> list = new ArrayList<>();
-                for(OpenFactory open : output.get(key)){
-                    list.add(
-                            new Factory(
-                                    new TradedItem(open.currency, open.price),
-                                    open.stack, open.count,
-                                    open.maxUses, open.experience,
-                                    open.enchantment, open.enchantmentLevel,
-                                    open.components
-                            )
-                    );
+                if(!output.get(key).isEmpty()){
+                    ArrayList<TradeOffers.Factory> list = new ArrayList<>();
+                    for(OpenFactory open : output.get(key)){
+                        list.add(
+                                new Factory(
+                                        new TradedItem(open.currency, open.price),
+                                        open.stack, open.count,
+                                        open.maxUses, open.experience,
+                                        open.enchantment, open.enchantmentLevel,
+                                        open.components
+                                )
+                        );
+                    }
+                    TradeOffers.Factory[] workaround = new TradeOffers.Factory[list.size()];
+                    result.put(key, list.toArray(workaround));
                 }
-                TradeOffers.Factory[] workaround = new TradeOffers.Factory[list.size()];
-                result.put(key, list.toArray(workaround));
             }
             return result;
         }
     }
 
     private static class OpenFactory{
-        public Item currency = FabricLoader.getInstance().isModLoaded("terrifictickets") ?
-                RegistryHelper.getItem("terrifictickets:ticket") : (
-                FabricLoader.getInstance().isModLoaded("extravaganza") ?
-                        RegistryHelper.getItem("extravaganza:common_festive_coin") :
-                        RegistryHelper.getItem("minecraft:emerald")
-                );
+        public Item currency = RegistryHelper.getItem("terrifictickets:ticket");
         public int price = 3;
         public Item stack = RegistryHelper.getItem("minecraft:beetroot");
         public int count = 1;
-        public RegistryKey<Enchantment> enchantment = null;
+        public String enchantment = null;
         public int enchantmentLevel = 1;
         public int maxUses = 1;
         public int experience = 6;
@@ -132,7 +162,7 @@ public class ClownRaidTrading {
     public static class Factory implements TradeOffers.Factory {
         private final TradedItem currency;
         private final Item stack;
-        private final RegistryKey<Enchantment> enchantment;
+        private final String enchantment;
         private final int enchantmentLevel;
         private final int maxUses;
         private final int experience;
@@ -140,7 +170,7 @@ public class ClownRaidTrading {
         private final float multiplier;
         private final Pair<ComponentType, Object>[] components;
 
-        public Factory(TradedItem currency, Item stack, int count, int maxUses, int experience, RegistryKey<Enchantment> enchantment, int enchantmentLevel, Pair<ComponentType, Object>... components) {
+        public Factory(TradedItem currency, Item stack, int count, int maxUses, int experience, String enchantment, int enchantmentLevel, Pair<ComponentType, Object>... components) {
             this.stack = stack;
             this.enchantment = enchantment;
             this.enchantmentLevel = enchantmentLevel;
@@ -155,8 +185,9 @@ public class ClownRaidTrading {
         public TradeOffer create(Entity entity, Random random) {
             ItemStack itemStack =  new ItemStack(stack, this.count);
             if(enchantment != null) {
-                RegistryEntry<Enchantment> enchantmentEntry = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(enchantment.getValue()).get();
-                itemStack.addEnchantment(enchantmentEntry, this.enchantmentLevel);
+                RegistryEntry<Enchantment> enchantmentEntry = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Identifier.of(enchantment)).orElse(null);
+                if(enchantmentEntry != null)
+                    itemStack.addEnchantment(enchantmentEntry, this.enchantmentLevel);
             }
             if(this.components != null)
                 for (Pair<ComponentType, Object> component : this.components){

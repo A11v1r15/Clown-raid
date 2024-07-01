@@ -1,9 +1,9 @@
 package net.a11v1r15.clownraid.entity;
 
 import net.a11v1r15.clownraid.ClownRaid;
-import net.a11v1r15.clownraid.ClownRaidTrades;
 import net.a11v1r15.clownraid.FormParadeGoal;
 import net.a11v1r15.clownraid.util.RegistryHelper;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,26 +21,34 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
+import java.util.ArrayList;
+
 public class MarcherEntity extends ParaderEntity {
     public MarcherEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
-        int chooseInt = this.random.nextInt(13);
-        ItemStack handItem = new ItemStack(RegistryHelper.getItem(switch (chooseInt){
-            case 0 -> "minecraft:goat_horn";
-            case 1 -> "mib:acoustic_guitar";
-            case 2 -> "mib:copper_goat_horn";
-            case 3 -> "mib:fantasy_trumpet";
-            case 4 -> "mib:flute";
-            case 5 -> "mib:harpsichord";
-            case 6 -> "mib:keyboard";
-            case 7 -> "mib:saxophone";
-            case 8 -> "mib:violin";
-            case 9 -> "powerchord:pan_flute";
-            case 10 -> "powerchord:harmonica";
-            case 11 -> "powerchord:wawa";
-            default -> "wowozela:wowozela";
-        }));
-        if (chooseInt == 0)
+        ArrayList<String> instruments = new ArrayList<>();
+        instruments.add("minecraft:goat_horn");
+        if(FabricLoader.getInstance().isModLoaded("mib")){
+            instruments.add("mib:acoustic_guitar");
+            instruments.add("mib:copper_goat_horn");
+            instruments.add("mib:fantasy_trumpet");
+            instruments.add("mib:flute");
+            instruments.add("mib:harpsichord");
+            instruments.add("mib:keyboard");
+            instruments.add("mib:saxophone");
+            instruments.add("mib:violin");
+        }
+        if(FabricLoader.getInstance().isModLoaded("powerchord")){
+            instruments.add("powerchord:pan_flute");
+            instruments.add("powerchord:harmonica");
+            instruments.add("powerchord:wawa");
+        }
+        if(FabricLoader.getInstance().isModLoaded("wowozela")){
+            instruments.add("wowozela:wowozela");
+        }
+        int chooseInt = this.random.nextInt(instruments.size());
+        ItemStack handItem = new ItemStack(RegistryHelper.getItem(instruments.get(chooseInt)));
+        if (handItem.isOf(RegistryHelper.getItem("minecraft:goat_horn")))
             GoatHornItem.setRandomInstrumentFromTag(handItem, InstrumentTags.GOAT_HORNS, this.getWorld().getRandom());
         this.equipStack(EquipmentSlot.MAINHAND, handItem);
         this.setCurrentHand(Hand.MAIN_HAND);
