@@ -105,7 +105,8 @@ public class ClownRaidTrading {
                             )
                     );
                 }
-                result.put(key, (TradeOffers.Factory[]) list.toArray());
+                TradeOffers.Factory[] workaround = new TradeOffers.Factory[list.size()];
+                result.put(key, list.toArray(workaround));
             }
             return result;
         }
@@ -157,11 +158,12 @@ public class ClownRaidTrading {
                 RegistryEntry<Enchantment> enchantmentEntry = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(enchantment.getValue()).get();
                 itemStack.addEnchantment(enchantmentEntry, this.enchantmentLevel);
             }
-            for (Pair<ComponentType, Object> component : this.components){
-                ComponentType componentType = component.getLeft();
-                Object value = component.getRight();
-                itemStack.set(componentType, value);
-            }
+            if(this.components != null)
+                for (Pair<ComponentType, Object> component : this.components){
+                    ComponentType componentType = component.getLeft();
+                    Object value = component.getRight();
+                    itemStack.set(componentType, value);
+                }
             return new TradeOffer(this.currency, itemStack, this.maxUses, this.experience, this.multiplier);
         }
     }
