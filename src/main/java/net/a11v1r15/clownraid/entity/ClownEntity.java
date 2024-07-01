@@ -67,6 +67,10 @@ public class ClownEntity extends ParaderEntity {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!itemStack.isOf(ClownRaid.CLOWN_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (hand == Hand.MAIN_HAND) {
+                if (this.getOffers().isEmpty()) {
+                    this.sayNo();
+                }
+
                 player.incrementStat(Stats.TALKED_TO_VILLAGER);
             }
 
@@ -89,16 +93,22 @@ public class ClownEntity extends ParaderEntity {
         TradeOffers.Factory[] factories =  ClownRaidTrades.CLOWN_TRADES.get("Common");
         TradeOffers.Factory[] factories2 = ClownRaidTrades.CLOWN_TRADES.get("Premium");
         TradeOffers.Factory[] factories3 = ClownRaidTrades.CLOWN_TRADES.get("The Funny");
-        if (factories != null && factories2 != null && factories3 != null) {
+        if (factories != null){
             TradeOfferList tradeOfferList = this.getOffers();
             this.fillRecipesFromPool(tradeOfferList, factories, 3);
+        }
+        if (factories2 != null){
+            TradeOfferList tradeOfferList = this.getOffers();
             int i = this.random.nextInt(factories2.length);
-            int j = this.random.nextInt(factories3.length);
             TradeOffers.Factory factory1 = factories2[i];
-            TradeOffers.Factory factory2 = factories3[j];
             TradeOffer tradeOffer1 = factory1.create(this, this.random);
-            TradeOffer tradeOffer2 = factory2.create(this, this.random);
             if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
+        }
+        if (factories3 != null) {
+            TradeOfferList tradeOfferList = this.getOffers();
+            int j = this.random.nextInt(factories3.length);
+            TradeOffers.Factory factory2 = factories3[j];
+            TradeOffer tradeOffer2 = factory2.create(this, this.random);
             if (tradeOffer2 != null) {
                 TradeOffer honqueTrade = new ClownRaidTrading.Factory(
                         tradeOffer2.getFirstBuyItem(),

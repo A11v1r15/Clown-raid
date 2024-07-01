@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.world.World;
@@ -53,5 +54,13 @@ public abstract class ParaderEntity extends WanderingTraderEntity {
             serverWorld.getPlayers().forEach((player) -> ServerPlayNetworking.send(player, new ExtendedParticlePacket(posDist, velDist, offer.getMerchantExperience() * 100, true, Confetti.CONFETTI)));
         }
         super.afterUsing(offer);
+    }
+
+    protected void sayNo() {
+        this.setHeadRollingTimeLeft(40);
+        if (!this.getWorld().isClient()) {
+            this.playSound(SoundEvents.ENTITY_VILLAGER_NO);
+        }
+
     }
 }

@@ -56,6 +56,10 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
         if (!itemStack.isOf(ClownRaid.PRESENTER_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (!this.isOwner) {
                 if (hand == Hand.MAIN_HAND) {
+                    if (this.getOffers().isEmpty()) {
+                        this.sayNo();
+                    }
+
                     player.incrementStat(Stats.TALKED_TO_VILLAGER);
                 }
                 if (!this.getWorld().isClient) {

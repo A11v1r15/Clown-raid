@@ -49,6 +49,10 @@ public class SellerEntity extends ParaderEntity {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!itemStack.isOf(ClownRaid.SELLER_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (hand == Hand.MAIN_HAND) {
+                if (this.getOffers().isEmpty()) {
+                    this.sayNo();
+                }
+
                 player.incrementStat(Stats.TALKED_TO_VILLAGER);
             }
 
