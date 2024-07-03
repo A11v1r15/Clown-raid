@@ -6,6 +6,8 @@ import net.a11v1r15.clownraid.FormParadeGoal;
 import net.a11v1r15.clownraid.util.ClownRaidTrading;
 import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -15,6 +17,7 @@ import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
@@ -33,15 +36,7 @@ public class ClownEntity extends ParaderEntity {
             ArrayList<String> funnies = new ArrayList<>();
             funnies.add("honque:the_orange_funny");
             funnies.add("honque:the_green_funny");
-            funnies.add("honque:the_blue_funny");
-            funnies.add("honque:the_gay_funny");
             funnies.add("honque:the_funny");
-            if(FabricLoader.getInstance().isModLoaded("magnificent-maw")){
-                funnies.add("honque:compat/the_ravenous_golden_funny");
-            }
-            if(FabricLoader.getInstance().isModLoaded("bombastic")){
-                funnies.add("honque:compat/the_black_funny");
-            }
             int chooseInt = this.random.nextInt(funnies.size());
             ItemStack headItem = new ItemStack(RegistryHelper.getItem(funnies.get(chooseInt)));
             this.equipStack(EquipmentSlot.HEAD, headItem);
@@ -127,6 +122,15 @@ public class ClownEntity extends ParaderEntity {
                 ).create(this, this.random);
                 tradeOfferList.add(honqueTrade);
             }
+        }
+    }
+
+    protected void afterUsing(TradeOffer offer) {
+        super.afterUsing(offer);
+        if(offer.getSellItem().isOf(getEquippedStack(EquipmentSlot.HEAD).getItem())){
+            RegistryEntry<Enchantment> vanishing_curse = RegistryHelper.getEnchantmentEntry("minecraft:vanishing_curse", this.getWorld());
+            if (vanishing_curse != null)
+                this.getEquippedStack(EquipmentSlot.HEAD).addEnchantment(vanishing_curse, 1);
         }
     }
 

@@ -42,11 +42,13 @@
 	"accessWidener" : "clown-raid.accesswidener",
 	"suggests": {
 		"carnivalconfections": "*",
+		"carnival-additions": "*",
 		"sinister-circus": "*",
 		"magnificent-maw": ">=1.4.1",
 		"carnival-foods": "*",
 		"magicians_hat": ">=1.0.0",
 		"extravaganza": "*",
+		"up_and_away": "*",
 		"powerchord": "*",
 		"bombastic": ">=1.0.1",
 		"trickster": ">=1.0.3",

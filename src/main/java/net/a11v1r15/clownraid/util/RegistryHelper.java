@@ -1,13 +1,16 @@
 package net.a11v1r15.clownraid.util;
 
 import net.minecraft.component.ComponentType;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 public class RegistryHelper {
     public static Item getItem (String identifier){
@@ -25,6 +28,10 @@ public class RegistryHelper {
     public static RegistryEntry.Reference<Potion> getPotionEntry (String identifier){
         return Registries.POTION.getEntry(Identifier.of(identifier))
                 .orElse(Registries.POTION.getEntry(Identifier.ofVanilla("awkward")).get());
+    }
+
+    public static RegistryEntry.Reference<Enchantment> getEnchantmentEntry (String identifier, World world){
+        return world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Identifier.of(identifier)).orElse(null);
     }
 
     public static StatusEffect getStatusEffect (String identifier){

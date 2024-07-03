@@ -185,7 +185,7 @@ public class ClownRaidTrading {
         public TradeOffer create(Entity entity, Random random) {
             ItemStack itemStack =  new ItemStack(stack, this.count);
             if(enchantment != null) {
-                RegistryEntry<Enchantment> enchantmentEntry = entity.getWorld().getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Identifier.of(enchantment)).orElse(null);
+                RegistryEntry<Enchantment> enchantmentEntry = RegistryHelper.getEnchantmentEntry(enchantment, entity.getWorld());
                 if(enchantmentEntry != null)
                     itemStack.addEnchantment(enchantmentEntry, this.enchantmentLevel);
             }
