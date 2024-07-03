@@ -24,17 +24,26 @@ import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+
 public class ClownEntity extends ParaderEntity {
     public ClownEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
         if(FabricLoader.getInstance().isModLoaded("honque")){
-            ItemStack headItem = new ItemStack(RegistryHelper.getItem(switch (this.random.nextInt(5)){
-                case 0 -> "honque:the_orange_funny";
-                case 1 -> "honque:the_green_funny";
-                case 2 -> "honque:the_blue_funny";
-                case 3 -> "honque:the_gay_funny";
-                default -> "honque:the_funny";
-            }));
+            ArrayList<String> funnies = new ArrayList<>();
+            funnies.add("honque:the_orange_funny");
+            funnies.add("honque:the_green_funny");
+            funnies.add("honque:the_blue_funny");
+            funnies.add("honque:the_gay_funny");
+            funnies.add("honque:the_funny");
+            if(FabricLoader.getInstance().isModLoaded("magnificent-maw")){
+                funnies.add("honque:compat/the_ravenous_golden_funny");
+            }
+            if(FabricLoader.getInstance().isModLoaded("bombastic")){
+                funnies.add("honque:compat/the_black_funny");
+            }
+            int chooseInt = this.random.nextInt(funnies.size());
+            ItemStack headItem = new ItemStack(RegistryHelper.getItem(funnies.get(chooseInt)));
             this.equipStack(EquipmentSlot.HEAD, headItem);
         } else if (FabricLoader.getInstance().isModLoaded("bombastic")) {
             this.equipStack(EquipmentSlot.HEAD, new ItemStack(RegistryHelper.getItem("bombastic:clown_hair")));
