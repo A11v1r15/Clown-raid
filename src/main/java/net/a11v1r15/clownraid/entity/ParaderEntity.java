@@ -3,10 +3,12 @@ package net.a11v1r15.clownraid.entity;
 import dev.doublekekse.confetti.Confetti;
 import dev.doublekekse.confetti.math.Vec3Dist;
 import dev.doublekekse.confetti.packet.ExtendedParticlePacket;
+import net.a11v1r15.clownraid.ClownRaid;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.village.TradeOffer;
@@ -16,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 public abstract class ParaderEntity extends WanderingTraderEntity {
     protected @Nullable ParaderEntity follower = null;
     protected @Nullable ParaderEntity following = null;
-    protected boolean hasNoTrades = true;
+    protected boolean hasNoTrades = false;
 
     public ParaderEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
@@ -61,7 +63,18 @@ public abstract class ParaderEntity extends WanderingTraderEntity {
     protected void sayNo() {
         this.setHeadRollingTimeLeft(40);
         if (!this.getWorld().isClient()) {
-            this.playSound(SoundEvents.ENTITY_VILLAGER_NO);
+            this.playSound(this.getNoSound());
         }
+    }
+
+    public void tick() {
+        super.tick();
+        if (this.getHeadRollingTimeLeft() > 0) {
+            this.setHeadRollingTimeLeft(this.getHeadRollingTimeLeft() - 1);
+        }
+    }
+
+    public SoundEvent getNoSound() {
+        return SoundEvents.ENTITY_VILLAGER_NO;
     }
 }

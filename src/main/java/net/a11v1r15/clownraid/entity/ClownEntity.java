@@ -151,4 +151,8 @@ public class ClownEntity extends ParaderEntity {
     public SoundEvent getYesSound() {
         return ClownRaid.ENTITY_CLOWN_YES;
     }
+
+    public SoundEvent getNoSound() {
+        return ClownRaid.ENTITY_CLOWN_NO;
+    }
 }

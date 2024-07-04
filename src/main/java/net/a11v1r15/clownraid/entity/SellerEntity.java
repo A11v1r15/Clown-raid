@@ -98,4 +98,8 @@ public class SellerEntity extends ParaderEntity {
     public SoundEvent getYesSound() {
         return ClownRaid.ENTITY_SELLER_YES;
     }
+
+    public SoundEvent getNoSound() {
+        return ClownRaid.ENTITY_SELLER_NO;
+    }
 }

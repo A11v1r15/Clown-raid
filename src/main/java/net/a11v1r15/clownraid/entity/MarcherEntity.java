@@ -96,9 +96,11 @@ public class MarcherEntity extends ParaderEntity {
                     Instrument instrument = myItemStack.getComponents().get(DataComponentTypes.INSTRUMENT).value();
                     SoundEvent soundEvent = instrument.soundEvent().value();
                     float f = instrument.range() / 16F;
-                    this.getWorld().playSoundFromEntity(this, soundEvent, SoundCategory.RECORDS, f, 1.0F);
+                    this.playSound(soundEvent, f, 1.0F);
                     this.getWorld().emitGameEvent(GameEvent.INSTRUMENT_PLAY, this.getPos(), GameEvent.Emitter.of(this));
                     return ActionResult.SUCCESS;
+                } else {
+                    sayNo();
                 }
             }
             return ActionResult.success(this.getWorld().isClient);
@@ -129,5 +131,9 @@ public class MarcherEntity extends ParaderEntity {
 
     public SoundEvent getYesSound() {
         return ClownRaid.ENTITY_MARCHER_YES;
+    }
+
+    public SoundEvent getNoSound() {
+        return ClownRaid.ENTITY_MARCHER_NO;
     }
 }

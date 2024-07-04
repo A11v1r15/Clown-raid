@@ -118,4 +118,8 @@ public class MagicianEntity extends ParaderEntity {
     public SoundEvent getYesSound() {
         return ClownRaid.ENTITY_MAGICIAN_YES;
     }
+
+    public SoundEvent getNoSound() {
+        return ClownRaid.ENTITY_MAGICIAN_NO;
+    }
 }

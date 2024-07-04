@@ -153,4 +153,8 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
     public SoundEvent getYesSound() {
         return ClownRaid.ENTITY_PRESENTER_YES;
     }
+
+    public SoundEvent getNoSound() {
+        return ClownRaid.ENTITY_PRESENTER_NO;
+    }
 }
