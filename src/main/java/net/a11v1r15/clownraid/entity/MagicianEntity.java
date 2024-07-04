@@ -67,29 +67,28 @@ public class MagicianEntity extends ParaderEntity {
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories =  ClownRaidTrades.MAGICIAN_TRADES.get("Common");
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.MAGICIAN_TRADES.get("Premium");
-        TradeOffers.Factory[] factories3 = ClownRaidTrades.MAGICIAN_TRADES.get("Hat");
-        if (factories != null){
+        TradeOffers.Factory[] factoryPoolCommon =  ClownRaidTrades.MAGICIAN_TRADES.get("Common");
+        TradeOffers.Factory[] factoryPoolPremium = ClownRaidTrades.MAGICIAN_TRADES.get("Premium");
+        TradeOffers.Factory[] factoryPoolHat = ClownRaidTrades.MAGICIAN_TRADES.get("Hat");
+        if (factoryPoolCommon != null){
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 3);
+            this.fillRecipesFromPool(tradeOfferList, factoryPoolCommon, 3);
         }
-        if (factories2 != null){
+        if (factoryPoolPremium != null){
             TradeOfferList tradeOfferList = this.getOffers();
-            int i = this.random.nextInt(factories2.length);
-            TradeOffers.Factory factory1 = factories2[i];
-            TradeOffer tradeOffer1 = factory1.create(this, this.random);
-            if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
+            int i = this.random.nextInt(factoryPoolPremium.length);
+            TradeOffers.Factory premiumFactory = factoryPoolPremium[i];
+            TradeOffer premiumTradeOffer = premiumFactory.create(this, this.random);
+            if (premiumTradeOffer != null) {tradeOfferList.add(premiumTradeOffer);}
         }
-        if (factories3 != null) {
+        if (factoryPoolHat != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 3);
-            int j = this.random.nextInt(factories3.length);
-            TradeOffers.Factory factory2 = factories3[j];
-            TradeOffer tradeOffer2 = factory2.create(this, this.random);
-            if (tradeOffer2 != null) {
-                tradeOfferList.add(tradeOffer2);
-                this.equipStack(EquipmentSlot.HEAD, tradeOffer2.copySellItem());
+            int j = this.random.nextInt(factoryPoolHat.length);
+            TradeOffers.Factory hatFactory = factoryPoolHat[j];
+            TradeOffer hatTradeOffer = hatFactory.create(this, this.random);
+            if (hatTradeOffer != null) {
+                tradeOfferList.add(hatTradeOffer);
+                this.equipStack(EquipmentSlot.HEAD, hatTradeOffer.copySellItem());
             }
         }
         hasNoTrades = this.getOffers().isEmpty();

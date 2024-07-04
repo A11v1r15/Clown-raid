@@ -70,23 +70,23 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories1 = ClownRaidTrades.PRESENTER_TRADES.get("Tickets");
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.PRESENTER_TRADES.get("Tokens");
-        TradeOffers.Factory[] factories3 = ClownRaidTrades.PRESENTER_TRADES.get("Passcard");
-        if (factories1 != null && factories2 != null && factories3 != null) {
+        TradeOffers.Factory[] factoryPoolTickets = ClownRaidTrades.PRESENTER_TRADES.get("Tickets");
+        TradeOffers.Factory[] factoryPoolTokens = ClownRaidTrades.PRESENTER_TRADES.get("Tokens");
+        TradeOffers.Factory[] factoryPoolPassCard = ClownRaidTrades.PRESENTER_TRADES.get("Passcard");
+        if (factoryPoolTickets != null && factoryPoolTokens != null && factoryPoolPassCard != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            int i = this.random.nextInt(factories1.length);
-            int j = this.random.nextInt(factories2.length);
-            int k = this.random.nextInt(factories3.length);
-            TradeOffers.Factory factory1 = factories1[i];
-            TradeOffers.Factory factory2 = factories2[j];
-            TradeOffers.Factory factory3 = factories3[k];
-            TradeOffer tradeOffer1 = factory1.create(this, this.random);
-            TradeOffer tradeOffer2 = factory2.create(this, this.random);
-            TradeOffer tradeOffer3 = factory3.create(this, this.random);
-            if (tradeOffer1 != null) tradeOfferList.add(tradeOffer1);
-            if (tradeOffer2 != null) tradeOfferList.add(tradeOffer2);
-            if (tradeOffer3 != null) tradeOfferList.add(tradeOffer3);
+            int i = this.random.nextInt(factoryPoolTickets.length);
+            int j = this.random.nextInt(factoryPoolTokens.length);
+            int k = this.random.nextInt(factoryPoolPassCard.length);
+            TradeOffers.Factory ticketsFactory = factoryPoolTickets[i];
+            TradeOffers.Factory tokensFactory = factoryPoolTokens[j];
+            TradeOffers.Factory passCardFactory = factoryPoolPassCard[k];
+            TradeOffer ticketsTradeOffer = ticketsFactory.create(this, this.random);
+            TradeOffer tokensTradeOffer = tokensFactory.create(this, this.random);
+            TradeOffer passCardTradeOffer = passCardFactory.create(this, this.random);
+            if (ticketsTradeOffer != null) tradeOfferList.add(ticketsTradeOffer);
+            if (tokensTradeOffer != null) tradeOfferList.add(tokensTradeOffer);
+            if (passCardTradeOffer != null) tradeOfferList.add(passCardTradeOffer);
         }
         hasNoTrades = this.getOffers().isEmpty();
     }

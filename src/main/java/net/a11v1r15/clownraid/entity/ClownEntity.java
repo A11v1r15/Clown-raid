@@ -87,30 +87,30 @@ public class ClownEntity extends ParaderEntity {
     }
 
     protected void fillRecipes() {
-        TradeOffers.Factory[] factories =  ClownRaidTrades.CLOWN_TRADES.get("Common");
-        TradeOffers.Factory[] factories2 = ClownRaidTrades.CLOWN_TRADES.get("Premium");
-        TradeOffers.Factory[] factories3 = ClownRaidTrades.CLOWN_TRADES.get("The Funny");
-        if (factories != null){
+        TradeOffers.Factory[] factoryPoolCommon =  ClownRaidTrades.CLOWN_TRADES.get("Common");
+        TradeOffers.Factory[] factoryPoolPremium = ClownRaidTrades.CLOWN_TRADES.get("Premium");
+        TradeOffers.Factory[] factoryPoolTheFunny = ClownRaidTrades.CLOWN_TRADES.get("The Funny");
+        if (factoryPoolCommon != null){
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factories, 3);
+            this.fillRecipesFromPool(tradeOfferList, factoryPoolCommon, 3);
         }
-        if (factories2 != null){
+        if (factoryPoolPremium != null){
             TradeOfferList tradeOfferList = this.getOffers();
-            int i = this.random.nextInt(factories2.length);
-            TradeOffers.Factory factory1 = factories2[i];
-            TradeOffer tradeOffer1 = factory1.create(this, this.random);
-            if (tradeOffer1 != null) {tradeOfferList.add(tradeOffer1);}
+            int i = this.random.nextInt(factoryPoolPremium.length);
+            TradeOffers.Factory premiumFactory = factoryPoolPremium[i];
+            TradeOffer premiumTradeOffer = premiumFactory.create(this, this.random);
+            if (premiumTradeOffer != null) {tradeOfferList.add(premiumTradeOffer);}
         }
-        if (factories3 != null) {
+        if (factoryPoolTheFunny != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            int j = this.random.nextInt(factories3.length);
-            TradeOffers.Factory factory2 = factories3[j];
-            TradeOffer tradeOffer2 = factory2.create(this, this.random);
-            if (tradeOffer2 != null) {
+            int j = this.random.nextInt(factoryPoolTheFunny.length);
+            TradeOffers.Factory theFunnyFactory = factoryPoolTheFunny[j];
+            TradeOffer theFunnyTradeOffer = theFunnyFactory.create(this, this.random);
+            if (theFunnyTradeOffer != null) {
                 TradeOffer honqueTrade = new ClownRaidTrading.Factory(
-                        tradeOffer2.getFirstBuyItem(),
+                        theFunnyTradeOffer.getFirstBuyItem(),
                         getEquippedStack(EquipmentSlot.HEAD).getItem(),
-                        1, tradeOffer2.getMaxUses(), tradeOffer2.getMerchantExperience(),
+                        1, theFunnyTradeOffer.getMaxUses(), theFunnyTradeOffer.getMerchantExperience(),
                         null, 0
                 ).create(this, this.random);
                 tradeOfferList.add(honqueTrade);
