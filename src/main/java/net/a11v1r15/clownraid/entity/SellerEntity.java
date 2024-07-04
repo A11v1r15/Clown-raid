@@ -15,12 +15,9 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
-
-import java.util.HashMap;
 
 public class SellerEntity extends ParaderEntity {
     public SellerEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
@@ -49,22 +46,16 @@ public class SellerEntity extends ParaderEntity {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!itemStack.isOf(ClownRaid.SELLER_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (hand == Hand.MAIN_HAND) {
-                if (this.getOffers().isEmpty()) {
-                    this.sayNo();
-                }
-
+                if (hasNoTrades) this.sayNo();
                 player.incrementStat(Stats.TALKED_TO_VILLAGER);
             }
-
             if (!this.getWorld().isClient) {
                 if (this.getOffers().isEmpty()) {
                     return ActionResult.CONSUME;
                 }
-
                 this.setCustomer(player);
                 this.sendOffers(player, this.getDisplayName(), 1);
             }
-
             return ActionResult.success(this.getWorld().isClient);
         } else {
             return super.interactMob(player, hand);
@@ -81,6 +72,7 @@ public class SellerEntity extends ParaderEntity {
             TradeOfferList tradeOfferList = this.getOffers();
             this.fillRecipesFromPool(tradeOfferList, factories, 4);
         }
+        hasNoTrades = this.getOffers().isEmpty();
     }
 
     protected SoundEvent getAmbientSound() {

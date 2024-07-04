@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 public abstract class ParaderEntity extends WanderingTraderEntity {
     protected @Nullable ParaderEntity follower = null;
     protected @Nullable ParaderEntity following = null;
+    protected boolean hasNoTrades = true;
 
     public ParaderEntity(EntityType<? extends WanderingTraderEntity> entityType, World world) {
         super(entityType, world);
@@ -52,6 +53,7 @@ public abstract class ParaderEntity extends WanderingTraderEntity {
             Vec3Dist posDist = new Vec3Dist(this.getPos(), 1.0);
             Vec3Dist velDist = new Vec3Dist(new Vec3d(0.0, 1.0, 0.0), 0.2);
             serverWorld.getPlayers().forEach((player) -> ServerPlayNetworking.send(player, new ExtendedParticlePacket(posDist, velDist, offer.getMerchantExperience() * 100, true, Confetti.CONFETTI)));
+            if(this.getOffers().isEmpty()) hasNoTrades = true;
         }
         super.afterUsing(offer);
     }
@@ -61,6 +63,5 @@ public abstract class ParaderEntity extends WanderingTraderEntity {
         if (!this.getWorld().isClient()) {
             this.playSound(SoundEvents.ENTITY_VILLAGER_NO);
         }
-
     }
 }

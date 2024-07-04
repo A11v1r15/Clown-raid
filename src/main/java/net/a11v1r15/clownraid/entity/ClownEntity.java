@@ -7,7 +7,6 @@ import net.a11v1r15.clownraid.util.ClownRaidTrading;
 import net.a11v1r15.clownraid.util.RegistryHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ai.goal.*;
@@ -71,22 +70,16 @@ public class ClownEntity extends ParaderEntity {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!itemStack.isOf(ClownRaid.CLOWN_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (hand == Hand.MAIN_HAND) {
-                if (this.getOffers().isEmpty()) {
-                    this.sayNo();
-                }
-
+                if (hasNoTrades) this.sayNo();
                 player.incrementStat(Stats.TALKED_TO_VILLAGER);
             }
-
             if (!this.getWorld().isClient) {
                 if (this.getOffers().isEmpty()) {
                     return ActionResult.CONSUME;
                 }
-
                 this.setCustomer(player);
                 this.sendOffers(player, this.getDisplayName(), 1);
             }
-
             return ActionResult.success(this.getWorld().isClient);
         } else {
             return super.interactMob(player, hand);
@@ -123,6 +116,7 @@ public class ClownEntity extends ParaderEntity {
                 tradeOfferList.add(honqueTrade);
             }
         }
+        hasNoTrades = this.getOffers().isEmpty();
     }
 
     protected void afterUsing(TradeOffer offer) {

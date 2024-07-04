@@ -9,10 +9,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
@@ -21,8 +19,6 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class PresenterEntity extends ParaderEntity implements NightSkipListenner {
     protected boolean isOwner = false;
@@ -56,10 +52,7 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
         if (!itemStack.isOf(ClownRaid.PRESENTER_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (!this.isOwner) {
                 if (hand == Hand.MAIN_HAND) {
-                    if (this.getOffers().isEmpty()) {
-                        this.sayNo();
-                    }
-
+                    if (hasNoTrades) this.sayNo();
                     player.incrementStat(Stats.TALKED_TO_VILLAGER);
                 }
                 if (!this.getWorld().isClient) {
@@ -95,6 +88,7 @@ public class PresenterEntity extends ParaderEntity implements NightSkipListenner
             if (tradeOffer2 != null) tradeOfferList.add(tradeOffer2);
             if (tradeOffer3 != null) tradeOfferList.add(tradeOffer3);
         }
+        hasNoTrades = this.getOffers().isEmpty();
     }
 
     protected void afterUsing(TradeOffer offer) {

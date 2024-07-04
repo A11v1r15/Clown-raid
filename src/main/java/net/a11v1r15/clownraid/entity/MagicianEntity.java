@@ -50,22 +50,16 @@ public class MagicianEntity extends ParaderEntity {
         ItemStack itemStack = player.getStackInHand(hand);
         if (!itemStack.isOf(ClownRaid.MAGICIAN_SPAWN_EGG) && this.isAlive() && !this.hasCustomer() && !this.isBaby()) {
             if (hand == Hand.MAIN_HAND) {
-                if (this.getOffers().isEmpty()) {
-                    this.sayNo();
-                }
-
+                if (hasNoTrades) this.sayNo();
                 player.incrementStat(Stats.TALKED_TO_VILLAGER);
             }
-
             if (!this.getWorld().isClient) {
                 if (this.getOffers().isEmpty()) {
                     return ActionResult.CONSUME;
                 }
-
                 this.setCustomer(player);
                 this.sendOffers(player, this.getDisplayName(), 1);
             }
-
             return ActionResult.success(this.getWorld().isClient);
         } else {
             return super.interactMob(player, hand);
@@ -98,6 +92,7 @@ public class MagicianEntity extends ParaderEntity {
                 this.equipStack(EquipmentSlot.HEAD, tradeOffer2.copySellItem());
             }
         }
+        hasNoTrades = this.getOffers().isEmpty();
     }
 
     protected SoundEvent getAmbientSound() {
