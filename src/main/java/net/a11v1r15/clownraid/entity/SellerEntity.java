@@ -70,7 +70,7 @@ public class SellerEntity extends ParaderEntity {
                         keySet[this.random.nextInt(keySet.length)]);
         if (factoryPool != null) {
             TradeOfferList tradeOfferList = this.getOffers();
-            this.fillRecipesFromPool(tradeOfferList, factoryPool, 5);
+            this.fillRecipesFromPool(tradeOfferList, factoryPool, 50);
         }
         hasNoTrades = this.getOffers().isEmpty();
     }

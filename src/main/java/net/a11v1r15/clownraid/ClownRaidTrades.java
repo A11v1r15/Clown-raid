@@ -73,7 +73,7 @@ public class ClownRaidTrades {
             .sell(6, "carnival-additions:popcorn").inExchangeForDefault(24).times(3).rewarding(12)
             .sell(6, "carnival-additions:fries").inExchangeForDefault(7).times(4)
             .sell(6, "carnival-additions:lemonade").inExchangeForDefault(7).times(4)
-            .sell(6, "carnival-additions:burguer").inExchangeForDefault(10).times(4)
+            .sell(6, "carnival-additions:burger").inExchangeForDefault(10).times(4)
             .sell(6, "carnival-additions:hot_dog").inExchangeForDefault(5).times(4)
             .sell(6, "carnival-additions:hot_dog_ketchup").inExchangeForDefault(15).times(4).rewarding(32)
             .sell(6, "carnival-additions:hot_dog_mustard").inExchangeForDefault(15).times(4).rewarding(32)
