@@ -96,10 +96,7 @@ public class ClownEntity extends ParaderEntity {
         }
         if (factoryPoolPremium != null){
             TradeOfferList tradeOfferList = this.getOffers();
-            int i = this.random.nextInt(factoryPoolPremium.length);
-            TradeOffers.Factory premiumFactory = factoryPoolPremium[i];
-            TradeOffer premiumTradeOffer = premiumFactory.create(this, this.random);
-            if (premiumTradeOffer != null) {tradeOfferList.add(premiumTradeOffer);}
+            this.fillRecipesFromPool(tradeOfferList, factoryPoolPremium, 2);
         }
         if (factoryPoolTheFunny != null) {
             TradeOfferList tradeOfferList = this.getOffers();
