@@ -51,7 +51,7 @@ public abstract class ParaderEntity extends WanderingTraderEntity {
     }
 
     protected void afterUsing(TradeOffer offer) {
-        if (offer.shouldRewardPlayerExperience() && this.getWorld() instanceof ServerWorld serverWorld) {
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
             Vec3Dist posDist = new Vec3Dist(this.getPos(), 1.0);
             Vec3Dist velDist = new Vec3Dist(new Vec3d(0.0, 1.0, 0.0), 0.2);
             serverWorld.getPlayers().forEach((player) -> ServerPlayNetworking.send(player, new ExtendedParticlePacket(posDist, velDist, offer.getMerchantExperience() * 100, true, Confetti.CONFETTI)));

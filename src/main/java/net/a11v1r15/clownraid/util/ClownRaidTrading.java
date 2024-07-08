@@ -6,6 +6,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
@@ -36,7 +37,7 @@ public class ClownRaidTrading {
         }
 
         public Builder sell(int count, String item){
-            if(FabricLoader.getInstance().isModLoaded(item.split(":")[0])){
+            if(RegistryHelper.getItem(item) != Items.AIR){
                 lastFactory = new OpenFactory();
                 output.get(lastTag).add(lastFactory);
                 lastFactory.stack = RegistryHelper.getItem(item);
@@ -53,7 +54,7 @@ public class ClownRaidTrading {
         }
 
         public Builder sellIfModIsPresent(int count, String item, String modID){
-            if(FabricLoader.getInstance().isModLoaded(item.split(":")[0]) &&
+            if((RegistryHelper.getItem(item) != Items.AIR) &&
                     FabricLoader.getInstance().isModLoaded(modID)){
                 lastFactory = new OpenFactory();
                 output.get(lastTag).add(lastFactory);

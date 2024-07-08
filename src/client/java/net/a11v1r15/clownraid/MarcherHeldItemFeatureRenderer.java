@@ -52,6 +52,7 @@ import net.minecraft.util.math.RotationAxis;
                         itemStack.isOf(RegistryHelper.getItem("powerchord:harmonica")))
                     wy = 0.2F;
             } else if (itemStack.isOf(RegistryHelper.getItem("mib:flute"))){
+                deg = 180.0F;
                 wy = 0.1F;
                 zed = -0.4F;
             }
